@@ -40,7 +40,7 @@ jobs:
       : CONFIG: linux_aarch64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.9.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma9
-  timeoutInMinutes: 1
+  timeoutInMinutes: 360
   variables: {}
 
   steps:

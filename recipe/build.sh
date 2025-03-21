@@ -202,6 +202,7 @@ export TF_CONFIGURE_IOS=0
 
 ./configure
 
+
 # Remove legacy flags set by configure that conflicts with CUDA 12's multi-directory approach.
 if [[ "${cuda_compiler_version}" == 12* ]]; then
     sed -i '/CUDA_TOOLKIT_PATH/d' .tf_configure.bazelrc
@@ -210,6 +211,8 @@ fi
 if [[ "${build_platform}" == linux-* ]]; then
   $RECIPE_DIR/add_py_toolchain.sh
 fi
+
+pip install cython
 
 cat >> .bazelrc <<EOF
 build --crosstool_top=//custom_toolchain:toolchain

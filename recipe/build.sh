@@ -89,6 +89,11 @@ else
 fi
 
 ARCH=$(uname -m)
+if [ ${ARCH} == "aarch64" ]; then
+    NVARCH=sbsa
+else
+    NVARCH=${ARCH}
+fi
 if [[ ${cuda_compiler_version} != "None" ]]; then
     export LDFLAGS="${LDFLAGS} -lcusparse"
     export GCC_HOST_COMPILER_PATH="${GCC}"
@@ -111,28 +116,28 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
         export HERMETIC_CUDA_COMPUTE_CAPABILITIES=sm_60,sm_70,sm_75,sm_80,sm_86,sm_89,sm_90,compute_90
         export CUDNN_INSTALL_PATH=$PREFIX
         export NCCL_INSTALL_PATH=$PREFIX
-        export CUDA_HOME="${BUILD_PREFIX}/targets/${ARCH}-linux"
-        export TF_CUDA_PATHS="${BUILD_PREFIX}/targets/${ARCH}-linux,${PREFIX}/targets/${ARCH}-linux"
+        export CUDA_HOME="${BUILD_PREFIX}/targets/${NVARCH}-linux"
+        export TF_CUDA_PATHS="${BUILD_PREFIX}/targets/${NVARCH}-linux,${PREFIX}/targets/${ARCH}-linux"
         # XLA can only cope with a single cuda header include directory, merge both
-        rsync -a ${PREFIX}/targets/${ARCH}-linux/include/ ${BUILD_PREFIX}/targets/${ARCH}-linux/include/
+        rsync -a ${PREFIX}/targets/${NVARCH}-linux/include/ ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/
 
         # Although XLA supports a non-hermetic build, it still tries to find headers in the hermetic locations.
         # We do this in the BUILD_PREFIX to not have any impact on the resulting jaxlib package.
         # Otherwise, these copied files would be included in the package.
-        rm -rf ${BUILD_PREFIX}/targets/${ARCH}-linux/include/third_party
-        mkdir -p ${BUILD_PREFIX}/targets/${ARCH}-linux/include/third_party/gpus/cuda/extras/CUPTI
-        cp -r ${PREFIX}/targets/${ARCH}-linux/include ${BUILD_PREFIX}/targets/${ARCH}-linux/include/third_party/gpus/cuda/
-        cp -r ${PREFIX}/targets/${ARCH}-linux/include ${BUILD_PREFIX}/targets/${ARCH}-linux/include/third_party/gpus/cuda/extras/CUPTI/
-        mkdir -p ${BUILD_PREFIX}/targets/${ARCH}-linux/include/third_party/gpus/cudnn
-        cp ${PREFIX}/include/cudnn*.h ${BUILD_PREFIX}/targets/${ARCH}-linux/include/third_party/gpus/cudnn/
-        mkdir -p ${BUILD_PREFIX}/targets/${ARCH}-linux/include/third_party/nccl
-        cp ${PREFIX}/include/nccl.h ${BUILD_PREFIX}/targets/${ARCH}-linux/include/third_party/nccl/
-        rsync -a ${PREFIX}/targets/${ARCH}-linux/lib/ ${BUILD_PREFIX}/targets/${ARCH}-linux/lib/
-        ln -s ${BUILD_PREFIX}/bin/fatbinary ${BUILD_PREFIX}/targets/${ARCH}-linux/bin/fatbinary
-        ln -s ${BUILD_PREFIX}/bin/nvlink ${BUILD_PREFIX}/targets/${ARCH}-linux/bin/nvlink
-        ln -s ${BUILD_PREFIX}/bin/ptxas ${BUILD_PREFIX}/targets/${ARCH}-linux/bin/ptxas
+        rm -rf ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/third_party
+        mkdir -p ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/third_party/gpus/cuda/extras/CUPTI
+        cp -r ${PREFIX}/targets/${NVARCH}-linux/include ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/third_party/gpus/cuda/
+        cp -r ${PREFIX}/targets/${NVARCH}-linux/include ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/third_party/gpus/cuda/extras/CUPTI/
+        mkdir -p ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/third_party/gpus/cudnn
+        cp ${PREFIX}/include/cudnn*.h ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/third_party/gpus/cudnn/
+        mkdir -p ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/third_party/nccl
+        cp ${PREFIX}/include/nccl.h ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/third_party/nccl/
+        rsync -a ${PREFIX}/targets/${NVARCH}-linux/lib/ ${BUILD_PREFIX}/targets/${NVARCH}-linux/lib/
+        ln -s ${BUILD_PREFIX}/bin/fatbinary ${BUILD_PREFIX}/targets/${NVARCH}-linux/bin/fatbinary
+        ln -s ${BUILD_PREFIX}/bin/nvlink ${BUILD_PREFIX}/targets/${NVARCH}-linux/bin/nvlink
+        ln -s ${BUILD_PREFIX}/bin/ptxas ${BUILD_PREFIX}/targets/${NVARCH}-linux/bin/ptxas
 
-        export LOCAL_CUDA_PATH="${BUILD_PREFIX}/targets/${ARCH}-linux"
+        export LOCAL_CUDA_PATH="${BUILD_PREFIX}/targets/${NVARCH}-linux"
         export LOCAL_CUDNN_PATH="${PREFIX}"
         export LOCAL_NCCL_PATH="${PREFIX}"
 

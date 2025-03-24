@@ -222,7 +222,7 @@ build --cpu=${TARGET_CPU}
 build --local_cpu_resources=${CPU_COUNT}
 EOF
 # update the requirements list - we've patched it
-bazel run //ci/official/requirements_updater:requirements.update --repo_env=HERMETIC_PYTHON_VERSION=$PY_VER
+# bazel run //ci/official/requirements_updater:requirements.update --repo_env=HERMETIC_PYTHON_VERSION=$PY_VER
 
 # Update TF lite schema with latest flatbuffers version
 pushd tensorflow/compiler/mlir/lite/schema

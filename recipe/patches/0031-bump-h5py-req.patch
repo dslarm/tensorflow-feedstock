@@ -1,9 +1,10 @@
 diff --git a/ci/official/requirements_updater/requirements.in b/ci/official/requirements_updater/requirements.in
-index 626bcca9572..c6c03afc345 100644
+index 626bcca9572..2d0e16428c5 100644
 --- a/ci/official/requirements_updater/requirements.in
 +++ b/ci/official/requirements_updater/requirements.in
 @@ -1,6 +1,6 @@
- numpy ~= 2.0.0
+-numpy ~= 2.0.0
++numpy >= 2.0.0, < 2.2.0
  wheel ~= 0.41.2
 -h5py >= 3.11.0
 +h5py >= 3.12.0

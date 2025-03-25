@@ -162,7 +162,7 @@ else
     export TF_NEED_CUDA=0
 fi
 
-source ${PREFIX}/bin/gen-bazel-toolchain
+gen-bazel-toolchain
 
 if [[ "${target_platform}" == "osx-64" ]]; then
   # Tensorflow doesn't cope yet with an explicit architecture (darwin_x86_64) on osx-64 yet.

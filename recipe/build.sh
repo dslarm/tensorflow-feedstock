@@ -93,7 +93,7 @@ else
 fi
 
 ARCH=$(uname -m)
-if [ ${ARCH} == "aarch64" ]; then
+if [ ${target_platform} == "linux-aarch64" ]; then
     NVARCH=sbsa
 else
     NVARCH=${ARCH}

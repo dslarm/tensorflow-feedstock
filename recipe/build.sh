@@ -110,7 +110,10 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
     export TF_NCCL_VERSION=$(pkg-config nccl --modversion | grep -Po '\d+\.\d+')
 
     export LDFLAGS="${LDFLAGS//-Wl,-z,now/-Wl,-z,lazy}"
-    export CC_OPT_FLAGS="-march=nocona -mtune=haswell"
+
+    if [ ${target_platform} == "linux-64" ]; then
+	export CC_OPT_FLAGS="-march=nocona -mtune=haswell"
+    fi
 
     if [[ ${cuda_compiler_version} == 11.8 ]]; then
         export HERMETIC_CUDA_COMPUTE_CAPABILITIES=sm_35,sm_50,sm_60,sm_62,sm_70,sm_72,sm_75,sm_80,sm_86,sm_87,sm_89,sm_90,compute_90

@@ -162,7 +162,7 @@ else
     export TF_NEED_CUDA=0
 fi
 
-source ${RECIPE_DIR}/gen-bazel-toolchain.sh
+source ${PREFIX}/bin/gen-bazel-toolchain
 
 if [[ "${target_platform}" == "osx-64" ]]; then
   # Tensorflow doesn't cope yet with an explicit architecture (darwin_x86_64) on osx-64 yet.
@@ -221,7 +221,7 @@ if [[ "${build_platform}" == linux-* ]]; then
 fi
 
 cat >> .bazelrc <<EOF
-build --crosstool_top=//custom_toolchain:toolchain
+build --crosstool_top=//bazel_toolchain:toolchain
 build --@local_config_cuda//cuda:override_include_cuda_libs=true
 build --logging=6
 build --verbose_failures

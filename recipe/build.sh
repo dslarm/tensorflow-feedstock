@@ -92,13 +92,12 @@ else
   export LDFLAGS="${LDFLAGS} -lrt"
 fi
 
-ARCH=$(uname -m)
-if [ ${target_platform} == "linux-aarch64" ]; then
-    NVARCH=sbsa
-else
-    NVARCH=${ARCH}
-fi
 if [[ ${cuda_compiler_version} != "None" ]]; then
+    if [ ${target_platform} == "linux-aarch64" ]; then
+	NVARCH=sbsa
+    else
+	NVARCH=${ARCH}
+    fi
     export LDFLAGS="${LDFLAGS} -lcusparse"
     export GCC_HOST_COMPILER_PATH="${GCC}"
     export GCC_HOST_COMPILER_PREFIX="$(dirname ${GCC})"

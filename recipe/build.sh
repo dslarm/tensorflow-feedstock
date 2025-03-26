@@ -157,6 +157,12 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
         # Needs GCC 13+
         echo "build --define=xnn_enable_avxvnniint8=false" >> .bazelrc
 
+	# nvcc doesn't support Arm NEON - this patch enables abseil part to compile on arm - no impact elsewhere.
+        pushd ${BUILD_PREFIX}/include
+        patch -p1 < ${SRC_DIR}/third_party/absl/nvidia_jetson.patch
+        popd
+     else
+
     else
         echo "unsupported cuda version."
         exit 1

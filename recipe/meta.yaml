@@ -59,10 +59,8 @@ source:
 build:
   number: {{ build }}
   skip: true  # [win]
-  skip: true  # [x86_64]
-  skip: true  # [py!=311]  
   # The following skip can be removed when the absl::StrFormat build issues are fixed.
-  skip: true  # [cuda_compiler_version == "11.8"]
+  skip: true  # [cuda_compiler_version == "11.8" or cuda_compiler_version == "12.6"]
 
 requirements:
   build:

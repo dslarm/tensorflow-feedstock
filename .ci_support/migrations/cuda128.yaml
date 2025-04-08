@@ -2,7 +2,6 @@ migrator_ts: 1738229377
 __migrator:
   kind:
     version
-  # Use migrator to add CUDA 12 latest.
   use_local: true
   migration_number:
     1
@@ -25,6 +24,14 @@ __migrator:
       - 12.4
       - 12.6
       - 12.8
+  commit_message: |
+    Upgrade to CUDA 12.8
+    
+    With CUDA 12.8, the following new architectures are added `sm_100`, `sm_101` and `sm_120`.
+    To build for these architectures, maintainers will need to add these to list of architectures
+    that their package builds for.
+    
+    ref: https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#new-features
 
 cuda_compiler:                 # [((linux and (x86_64 or aarch64)) or win64) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
   - cuda-nvcc                  # [((linux and (x86_64 or aarch64)) or win64) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]

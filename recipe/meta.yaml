@@ -60,7 +60,7 @@ build:
   number: {{ build }}
   skip: true  # [win]
   # The following skip can be removed when the absl::StrFormat build issues are fixed.
-  skip: true  # [cuda_compiler_version == "11.8" or cuda_compiler_version == "12.6"]
+  skip: true  # [cuda_compiler_version == "11.8" or (cuda_compiler_version == "12.6" and target_platform == "linux_aarch64")]
 
 requirements:
   build:

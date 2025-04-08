@@ -66,6 +66,8 @@ build:
   skip: true  # [cuda_compiler_version == "12.6" and target_platform == "linux-aarch64"]
   # stay on CUDA 12.6 for x64 for now
   skip: true  # [cuda_compiler_version == "12.8" and target_platform == "linux-64"]
+  # DEBUG: only linux-aarch64
+  skip: true  # [not (aarch64 and py==312)]
 
 requirements:
   build:

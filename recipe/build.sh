@@ -138,6 +138,7 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
         mkdir -p ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/third_party/nccl
         cp ${PREFIX}/include/nccl.h ${BUILD_PREFIX}/targets/${NVARCH}-linux/include/third_party/nccl/
         rsync -a ${PREFIX}/targets/${NVARCH}-linux/lib/ ${BUILD_PREFIX}/targets/${NVARCH}-linux/lib/
+        mkdir -p ${BUILD_PREFIX}/targets/${NVARCH}-linux/bin
         ln -s ${BUILD_PREFIX}/bin/fatbinary ${BUILD_PREFIX}/targets/${NVARCH}-linux/bin/fatbinary
         ln -s ${BUILD_PREFIX}/bin/nvlink ${BUILD_PREFIX}/targets/${NVARCH}-linux/bin/nvlink
         ln -s ${BUILD_PREFIX}/bin/ptxas ${BUILD_PREFIX}/targets/${NVARCH}-linux/bin/ptxas

@@ -94,6 +94,8 @@ fi
 if [[ ${cuda_compiler_version} != "None" ]]; then
     if [ ${target_platform} == "linux-aarch64" ]; then
 	NVARCH=sbsa
+    elif [ ${target_platform} == "linux-64" ]; then
+	NVARCH=x86_64
     else
 	NVARCH=${ARCH}
     fi

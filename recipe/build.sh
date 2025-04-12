@@ -167,6 +167,7 @@ else
     export TF_NEED_CUDA=0
 fi
 
+# Why do we do this?
 gen-bazel-toolchain
 
 if [[ "${target_platform}" == "osx-64" ]]; then

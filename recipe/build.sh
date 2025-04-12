@@ -174,6 +174,10 @@ if [[ "${target_platform}" == "osx-64" ]]; then
   TARGET_CPU=darwin
   # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
   export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+elif [[ "${target_platform}" == "linux-aarch64" ]]; then
+  TARGET_CPU=aarch64
+elif [[ "${target_platform}" == "linux-x86_64" ]]; then
+  TARGET_CPU=x86_64
 fi
 
 # Get rid of unwanted defaults

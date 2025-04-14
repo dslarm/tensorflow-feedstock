@@ -86,6 +86,8 @@ requirements:
     - onednn-cpu-threadpool                  # [build_platform != target_platform]
     - pybind11                               # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
+    - libcurl                                # [build_platform != target_platform]
+    - zlib                                   # [build_platform != target_platform]
     - pkg-config
     - {{ compiler('c') }}
     - {{ stdlib("c") }}

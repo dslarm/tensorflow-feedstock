@@ -239,6 +239,9 @@ build --define=PREFIX=${PREFIX}
 build --define=PROTOBUF_INCLUDE_PATH=${PREFIX}/include
 build --cpu=${TARGET_CPU}
 build --local_cpu_resources=${CPU_COUNT}
+build --explain=${PREFIX}/explain.log
+build --verbose_explanations
+build --subcommands
 EOF
 
 # Update TF lite schema with latest flatbuffers version

@@ -53,8 +53,7 @@ source:
       - patches/0031-bump-h5py-req.patch
       # backport https://github.com/tensorflow/tensorflow/pull/90563 (applies to cuda-12.8, any platform)
       - patches/0032-gpu_prim-error.patch
-      - patches/0033-tsl-target.patch
-      - patches/0034-build-dirty.patch  # [target_platform == "linux-aarch64"]
+      - patches/0034-build-dirty.patch  # [target_platform == "linux-aarch64" and target_platform != build_platform]
   - url: https://github.com/tensorflow/estimator/archive/refs/tags/v{{ estimator_version.replace(".rc", "-rc") }}.tar.gz
     sha256: 2d7e100b1878084da34b5e23b49a0cbb5ee8a7add74b7dd189a82ada1cf85530
     folder: tensorflow-estimator
@@ -477,7 +476,7 @@ outputs:
   # 2021/08/01, hmaarrfk
   # While this seems like a roundabout way of defining the package name
   # It helps the linter avoid errors on a package not having tests.
-  {% set tensorflow_cpu_gpu = "tensorflow-cpu" %}   # [cuda_compiler_version == "None" or cuda_compiler_version is undefined]
+  {% set tensorflow_cpu_gpu = "tensorflow-cpu" %}   # [cuda_compiler_version == "None"]
   {% set tensorflow_cpu_gpu = "tensorflow-gpu" %}   # [cuda_compiler_version != "None"]
   - name: {{ tensorflow_cpu_gpu }}
     build:

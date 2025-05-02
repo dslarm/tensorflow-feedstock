@@ -6,6 +6,8 @@
 {% set build = build + 200 %}
 {% endif %}
 
+{% set build = build + 25*(microarch_level | int - 1) %}
+
 # Quite often libml_dtypes-headers and ml_dtypes diverge.
 # https://github.com/tensorflow/tensorflow/blob/v2.18.0/third_party/py/ml_dtypes/workspace.bzl
 {% set libml_dtypes_version = "0.5.0" %}

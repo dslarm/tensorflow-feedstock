@@ -76,7 +76,13 @@ export BAZEL_MKL_OPT=""
 mkdir -p ./bazel_output_base
 export BAZEL_OPTS=""
 # Set this to something as otherwise, it would include CFLAGS which itself contains a host path and this then breaks bazel's include path validation.
-export CC_OPT_FLAGS="-O2"
+if [[ "${target_platform}" != *-64 ]]; then
+  export CC_OPT_FLAGS="-O2"
+elif [[ "${microarch_level}" == "1" ]]; then
+  export CC_OPT_FLAGS="-O2 -march=nocona -mtune=haswell"
+else
+  export CC_OPT_FLAGS="-O2 -march=x86-64-v${microarch_level}"
+fi
 
 # Quick debug:
 # cp -r ${RECIPE_DIR}/build.sh . && bazel clean && bash -x build.sh --logging=6 | tee log.txt
@@ -101,7 +107,6 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
     export TF_NCCL_VERSION=$(pkg-config nccl --modversion | grep -Po '\d+\.\d+')
 
     export LDFLAGS="${LDFLAGS//-Wl,-z,now/-Wl,-z,lazy}"
-    export CC_OPT_FLAGS="-march=nocona -mtune=haswell"
 
     if [[ ${cuda_compiler_version} == 11.8 ]]; then
         export HERMETIC_CUDA_COMPUTE_CAPABILITIES=sm_35,sm_50,sm_60,sm_62,sm_70,sm_72,sm_75,sm_80,sm_86,sm_87,sm_89,sm_90,compute_90

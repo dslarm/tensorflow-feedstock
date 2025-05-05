@@ -6,6 +6,10 @@
 {% set build = build + 200 %}
 {% endif %}
 
+{% if microarch_level is undefined %}
+{% set microarch_level = "1" %}
+{% endif %}
+
 {% set build = build + 25*(microarch_level | int - 1) %}
 
 # Quite often libml_dtypes-headers and ml_dtypes diverge.

@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+if [[ "$(uname)" == "Linux" && "${target_platform}" != "${build_platform}" ]];
+then
+    echo "ERROR: cross-compilation is not supported; we tried, but couldn't complete it (https://github.com/conda-forge/tensorflow-feedstock/pull/426)"
+    exit 1
+fi    
+
 set -ex
 
 NPROC=$(nproc)

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -ex
 
 if [[ "$(uname)" == "Linux" && "${target_platform}" != "${build_platform}" ]];
 then
@@ -7,7 +8,6 @@ then
     exit 1
 fi    
 
-set -ex
 
 NPROC=$(nproc)
 if [[ "$CI" == "github_actions" ]]; then

@@ -2,7 +2,7 @@
 
 set -ex
 
-if [[ "${target_platform}" == "linux_aarch64" && "${CI}" == "azure" ]];
+if [[ "${target_platform}" == "linux-aarch64" && "${CI}" == "azure" ]];
 then
     echo "ERROR: don't use Azure (2025/05/07) as it will be emulated and waste CI time"
     echo "When native aarch64 Azure builders are available, this check can be removed"

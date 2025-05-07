@@ -12,8 +12,6 @@ fi
 NPROC=$(nproc)
 if [[ "$CI" == "github_actions" ]]; then
     export CPU_COUNT=4
-elif [[ $((NPROC>(CPU_COUNT*2))) ]]; then
-    export CPU_COUNT=$((NPROC))
 fi
 
 # Make libprotobuf-python-headers visible for pybind11_protobuf

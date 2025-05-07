@@ -29,7 +29,7 @@ giflib:
 icu:
 - '75'
 libabseil:
-- '20250127'
+- '20240722'
 libcurl:
 - '8'
 libgrpc:
@@ -42,6 +42,8 @@ libprotobuf:
 - 5.29.3
 macos_machine:
 - x86_64-apple-darwin13.4.0
+microarch_level:
+- '1'
 numpy:
 - '2.0'
 openssl:

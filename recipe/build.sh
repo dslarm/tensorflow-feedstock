@@ -2,9 +2,10 @@
 
 set -ex
 
-if [[ "$(uname)" == "Linux" && "${target_platform}" != "${build_platform}" ]];
+if [[ "${target_platform}" == "linux_aarch64" && "${CI}" == "azure" ]];
 then
-    echo "ERROR: cross-compilation is not supported; we tried, but couldn't complete it (https://github.com/conda-forge/tensorflow-feedstock/pull/426)"
+    echo "ERROR: don't use Azure (2025/05/07) as it will be emulated and waste CI time"
+    echo "When native aarch64 Azure builders are available, this check can be removed"
     exit 1
 fi    
 

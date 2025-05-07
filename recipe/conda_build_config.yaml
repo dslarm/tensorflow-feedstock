@@ -6,3 +6,7 @@ microarch_level:
 - 4   # [linux and x86_64]
 libabseil:
 - '20240722'
+libgrpc:
+- '1.67'
+libprotobuf:
+- 5.28.3

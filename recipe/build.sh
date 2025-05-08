@@ -4,15 +4,13 @@ set -ex
 
 if [[ "${target_platform}" == "linux-aarch64" && "${CI}" == "azure" ]];
 then
-    echo "ERROR: don't use Azure (2025/05/07) as it will be emulated and waste CI time"
-    echo "When native aarch64 Azure builders are available, this check can be removed"
+  echo "ERROR: don't use Azure (2025/05/07) as it will be emulated and waste CI time"
+  echo "When native aarch64 Azure builders are available, this check can be removed"
     exit 1
 fi    
 
-
-NPROC=$(nproc)
 if [[ "$CI" == "github_actions" ]]; then
-    export CPU_COUNT=4
+  export CPU_COUNT=4
 fi
 
 # Make libprotobuf-python-headers visible for pybind11_protobuf
@@ -119,7 +117,7 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
     export LDFLAGS="${LDFLAGS//-Wl,-z,now/-Wl,-z,lazy}"
 
     if [ ${target_platform} == "linux-64" ]; then
-	export CC_OPT_FLAGS="-march=nocona -mtune=haswell"
+        export CC_OPT_FLAGS="-march=nocona -mtune=haswell"
     fi
 
     if [[ ${cuda_compiler_version} == 11.8 ]]; then
@@ -173,7 +171,6 @@ else
     export TF_NEED_CUDA=0
 fi
 
-# Why do we do this?
 gen-bazel-toolchain
 
 if [[ "${target_platform}" == "osx-64" ]]; then
@@ -245,9 +242,6 @@ build --define=PREFIX=${PREFIX}
 build --define=PROTOBUF_INCLUDE_PATH=${PREFIX}/include
 build --cpu=${TARGET_CPU}
 build --local_cpu_resources=${CPU_COUNT}
-build --explain=${PREFIX}/explain.log
-build --verbose_explanations
-build --subcommands
 EOF
 
 # Update TF lite schema with latest flatbuffers version

@@ -61,15 +61,10 @@ source:
 build:
   number: {{ build }}
   skip: true  # [win]
-  skip: true   # [not aarch64]
   # The following skip can be removed when the absl::StrFormat build issues are fixed.
   skip: true  # [cuda_compiler_version == "11.8"]
-  # aarch support added only for CUDA 12.8+
+  # aarch64 support added only for CUDA 12.8+
   skip: true  # [cuda_compiler_version == "12.6" and target_platform == "linux-aarch64"]
-  # stay on CUDA 12.6 for x64 for now
-  skip: true  # [cuda_compiler_version == "12.8" and target_platform == "linux-64"]
-  # DEBUG: only linux-aarch64
-  skip: true  # [not (aarch64 and py==312)]
 
 requirements:
   build:

@@ -31,11 +31,6 @@ jobs:
             os: ubuntu
             runs_on: ['cirun-openstack-cpu-2xlarge--${{ github.run_id }}-linux_64_c_compiler_version13cuda_c_h82dd00e807', 'linux', 'x64', 'self-hosted']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-          - CONFIG: linux_64_c_compiler_version13cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version13microarch_level4python3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['cirun-openstack-cpu-2xlarge--${{ github.run_id }}-linux_64_c_compiler_version13cuda_c_hcfefd4e72c', 'linux', 'x64', 'self-hosted']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
           - CONFIG: linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13microarch_level1python3.10.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
@@ -45,11 +40,6 @@ jobs:
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['cirun-openstack-cpu-2xlarge--${{ github.run_id }}-linux_64_c_compiler_version13cuda_c_h1c0f3be0d1', 'linux', 'x64', 'self-hosted']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-          - CONFIG: linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13microarch_level4python3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['cirun-openstack-cpu-2xlarge--${{ github.run_id }}-linux_64_c_compiler_version13cuda_c_h6ebcdbaf68', 'linux', 'x64', 'self-hosted']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
     steps:
 

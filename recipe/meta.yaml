@@ -65,6 +65,8 @@ build:
   skip: true  # [cuda_compiler_version == "11.8"]
   # aarch64 support added only for CUDA 12.8+
   skip: true  # [cuda_compiler_version == "12.6" and target_platform == "linux-aarch64"]
+  # only enable CUDA 12.8 for aarch64 at this time.
+  skip: true  # [cuda_compiler_version == "12.8" and target_platform != "linux-aarch64"]
 
 requirements:
   build:

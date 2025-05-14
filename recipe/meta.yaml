@@ -470,16 +470,51 @@ outputs:
         - test -f $PREFIX/lib/libtensorflow_cc${SHLIB_EXT}  # [not win and cuda_compiler_version == "None"]
         - ./test_libtensorflow_cc.sh                        # [not win and cuda_compiler_version == "None" and build_platform == target_platform]
 
-  # 2021/08/01, hmaarrfk
-  # While this seems like a roundabout way of defining the package name
-  # It helps the linter avoid errors on a package not having tests.
-  {% set tensorflow_cpu_gpu = "tensorflow-cpu" %}   # [cuda_compiler_version == "None"]
-  {% set tensorflow_cpu_gpu = "tensorflow-gpu" %}   # [cuda_compiler_version != "None"]
-  - name: {{ tensorflow_cpu_gpu }}
+  - name: tensorflow-cpu
     build:
-      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
-      string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
-      detect_binary_files_with_prefix: false
+      string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+      skip: True  # [cuda_compiler_version != "None"]
+    requirements:
+      run:
+        - {{ pin_subpackage("tensorflow", exact=True) }}
+    test:
+      imports:
+        - tensorflow
+
+  - name: tensorflow-gpu
+    build:
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+      skip: True  # [cuda_compiler_version == "None"]
+    requirements:
+      run:
+        - {{ pin_subpackage("tensorflow", exact=True) }}
+    test:
+      imports:
+        - tensorflow
+
+  - name: tensorflow-sse3
+    build:
+      skip: True  # [(not x86_64) or microarch_level != 1]
+    requirements:
+      run:
+        - {{ pin_subpackage("tensorflow", exact=True) }}
+    test:
+      imports:
+        - tensorflow
+
+  - name: tensorflow-avx2
+    build:
+      skip: True  # [(not x86_64) or microarch_level != 3]
+    requirements:
+      run:
+        - {{ pin_subpackage("tensorflow", exact=True) }}
+    test:
+      imports:
+        - tensorflow
+
+  - name: tensorflow-avx512
+    build:
+      skip: True  # [(not x86_64) or microarch_level != 4]
     requirements:
       run:
         - {{ pin_subpackage("tensorflow", exact=True) }}

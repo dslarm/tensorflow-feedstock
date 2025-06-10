@@ -44,10 +44,12 @@ libpng:
 - '1.6'
 libprotobuf:
 - 5.28.3
+microarch_level:
+- '1'
 nccl:
 - '2'
 numpy:
-- '2.0'
+- '2'
 openssl:
 - '3'
 perl:
@@ -57,7 +59,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.12.* *_cpython
+- 3.11.* *_cpython
 snappy:
 - '1.2'
 sqlite:
@@ -72,7 +74,5 @@ zip_keys:
   - cuda_compiler
   - cuda_compiler_version
   - docker_image
-- - python
-  - numpy
 zlib:
 - '1'

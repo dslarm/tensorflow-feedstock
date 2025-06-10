@@ -6,6 +6,12 @@
 {% set build = build + 200 %}
 {% endif %}
 
+{% if microarch_level is undefined %}
+{% set microarch_level = "1" %}
+{% endif %}
+
+{% set build = build + 25*(microarch_level | int - 1) %}
+
 # Quite often libml_dtypes-headers and ml_dtypes diverge.
 # https://github.com/tensorflow/tensorflow/blob/v2.18.0/third_party/py/ml_dtypes/workspace.bzl
 {% set libml_dtypes_version = "0.5.0" %}
@@ -81,6 +87,7 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}                 # [cuda_compiler_version != "None"]
+    - x86_64-microarch-level  {{ microarch_level }}  # [linux and x86_64]
     - bazel 6.*
     - libgrpc
     - libprotobuf
@@ -178,6 +185,7 @@ outputs:
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - {{ compiler('cuda') }}              # [cuda_compiler_version != "None"]
+        - x86_64-microarch-level  {{ microarch_level }}  # [linux and x86_64]
         - python                              # [build_platform != target_platform]
         - cross-python_{{ target_platform }}  # [build_platform != target_platform]
       host:
@@ -333,6 +341,7 @@ outputs:
         # decide on the cuda variant
         # https://github.com/conda-forge/tensorflow-feedstock/issues/162
         - {{ compiler('cuda') }}                   # [cuda_compiler_version != "None"]
+        - x86_64-microarch-level  {{ microarch_level }}  # [linux and x86_64]
         - bazel 6.*
         - python                                   # [build_platform != target_platform]
         - cross-python_{{ target_platform }}       # [build_platform != target_platform]
@@ -382,6 +391,7 @@ outputs:
         # decide on the cuda variant
         # https://github.com/conda-forge/tensorflow-feedstock/issues/162
         - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
+        - x86_64-microarch-level  {{ microarch_level }}  # [linux and x86_64]
       # host requirements to pick up run_exports
       host:
         - libabseil
@@ -428,6 +438,7 @@ outputs:
         # decide on the cuda variant
         # https://github.com/conda-forge/tensorflow-feedstock/issues/162
         - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
+        - x86_64-microarch-level  {{ microarch_level }}  # [linux and x86_64]
         - rsync
       # host requirements to pick up run_exports
       host:
@@ -458,16 +469,51 @@ outputs:
         - test -f $PREFIX/lib/libtensorflow_cc${SHLIB_EXT}  # [not win and cuda_compiler_version == "None"]
         - ./test_libtensorflow_cc.sh                        # [not win and cuda_compiler_version == "None" and build_platform == target_platform]
 
-  # 2021/08/01, hmaarrfk
-  # While this seems like a roundabout way of defining the package name
-  # It helps the linter avoid errors on a package not having tests.
-  {% set tensorflow_cpu_gpu = "tensorflow-cpu" %}   # [cuda_compiler_version == "None" or cuda_compiler_version is undefined]
-  {% set tensorflow_cpu_gpu = "tensorflow-gpu" %}   # [cuda_compiler_version != "None"]
-  - name: {{ tensorflow_cpu_gpu }}
+  - name: tensorflow-cpu
     build:
-      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
-      string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
-      detect_binary_files_with_prefix: false
+      string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+      skip: True  # [cuda_compiler_version != "None"]
+    requirements:
+      run:
+        - {{ pin_subpackage("tensorflow", exact=True) }}
+    test:
+      imports:
+        - tensorflow
+
+  - name: tensorflow-gpu
+    build:
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+      skip: True  # [cuda_compiler_version == "None"]
+    requirements:
+      run:
+        - {{ pin_subpackage("tensorflow", exact=True) }}
+    test:
+      imports:
+        - tensorflow
+
+  - name: tensorflow-sse3
+    build:
+      skip: True  # [(not x86_64) or microarch_level != 1]
+    requirements:
+      run:
+        - {{ pin_subpackage("tensorflow", exact=True) }}
+    test:
+      imports:
+        - tensorflow
+
+  - name: tensorflow-avx2
+    build:
+      skip: True  # [(not x86_64) or microarch_level != 3]
+    requirements:
+      run:
+        - {{ pin_subpackage("tensorflow", exact=True) }}
+    test:
+      imports:
+        - tensorflow
+
+  - name: tensorflow-avx512
+    build:
+      skip: True  # [(not x86_64) or microarch_level != 4]
     requirements:
       run:
         - {{ pin_subpackage("tensorflow", exact=True) }}

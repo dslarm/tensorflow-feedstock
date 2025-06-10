@@ -13,9 +13,9 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cuda_compiler:
-- cuda-nvcc
+- None
 cuda_compiler_version:
-- '12.6'
+- None
 cudnn:
 - '9'
 cxx_compiler:
@@ -44,10 +44,12 @@ libpng:
 - '1.6'
 libprotobuf:
 - 5.28.3
+microarch_level:
+- '3'
 nccl:
 - '2'
 numpy:
-- '2.0'
+- '2'
 openssl:
 - '3'
 perl:
@@ -57,7 +59,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.10.* *_cpython
+- 3.12.* *_cpython
 snappy:
 - '1.2'
 sqlite:
@@ -72,7 +74,5 @@ zip_keys:
   - cuda_compiler
   - cuda_compiler_version
   - docker_image
-- - python
-  - numpy
 zlib:
 - '1'

@@ -1,5 +1,6 @@
 # https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/lib_package/README.md
-tar -C ${PWD}/tarall -xzf $SRC_DIR/libtensorflow.tar.gz
+mkdir -p ${PWD}/tarball
+tar -C ${PWD}/tarball -xzf $SRC_DIR/libtensorflow.tar.gz
 mkdir -p ${PREFIX}/lib
 mv ${PWD}/tarball/lib/libtensorflow.so* ${PREFIX}/lib
 mv ${PWD}/tarball/lib/libtensorflow.*.dylib ${PREFIX}/lib

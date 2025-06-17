@@ -195,7 +195,8 @@ outputs:
         - __cuda  # [cuda_compiler_version != "None"]
     test:
       commands:
-        - test -f $PREFIX/lib/libtensorflow${SHLIB_EXT}  # [cuda_compiler_version == "None"]
+        - test -f $PREFIX/lib/libtensorflow_framework${SHLIB_EXT}  # [cuda_compiler_version == "None"]
+        - test ! -f $PREFIX/lib/libtensorflow${SHLIB_EXT}  # [cuda_compiler_version == "None"]
 
   # 2021/12/29: hmaarrfk
   # as of tensorflow 2.7.0 we need the tensorflow-base package to break

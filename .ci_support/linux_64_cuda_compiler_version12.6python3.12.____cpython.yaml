@@ -47,7 +47,7 @@ libprotobuf:
 nccl:
 - '2'
 numpy:
-- '2.0'
+- '2'
 openssl:
 - '3'
 perl:
@@ -69,10 +69,6 @@ tensorflow:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-  - cuda_compiler
   - cuda_compiler_version
-  - docker_image
-- - python
-  - numpy
 zlib:
 - '1'

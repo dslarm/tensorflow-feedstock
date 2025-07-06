@@ -55,6 +55,11 @@ source:
       # https://github.com/tensorflow/tensorflow/pull/86413
       - patches/0028-Avoid-linking-with-internal-nvrtc.patch
       - patches/0029-remove-dependencies-to-libcuda.patch
+      # adjust patch 0004 for newer absl -- hmaarrfk - 2025/07/06
+      - patches/0030-Fixup-pybind11_protobuf.patch
+      - patches/0031-Update-linkages-for-new-absl-organization.patch
+      # Already included in the release after 2.19.0
+      - patches/0032-fix-mlir-trivial-constructor.patch
   - url: https://github.com/tensorflow/estimator/archive/refs/tags/v{{ estimator_version.replace(".rc", "-rc") }}.tar.gz
     sha256: 2d7e100b1878084da34b5e23b49a0cbb5ee8a7add74b7dd189a82ada1cf85530
     folder: tensorflow-estimator
@@ -62,8 +67,8 @@ source:
 build:
   number: {{ build }}
   skip: true  # [win]
-  # The following skip can be removed when the absl::StrFormat build issues are fixed.
-  skip: true  # [cuda_compiler_version == "11.8"]
+  # hmaarrfk -- temporary for now, just reduce the build matrix while we troubleshoot
+  skip: true  # [py!=312]
 
 requirements:
   build:
@@ -238,7 +243,7 @@ outputs:
         - numpy
         - opt_einsum >=2.3.2
         # simplified compared to upstream due to constraints arising through libprotobuf
-        - protobuf >=5.26,<6
+        - protobuf >=5.28
         - python-flatbuffers >=24.3.25
         - requests >=2.21.0,<3
         - six >=1.12
@@ -259,7 +264,7 @@ outputs:
         - h5py >=3.11
         - ml_dtypes >={{ ml_dtypes_version }},<1.0
         - opt_einsum >=2.3.2
-        - protobuf >=5.26,<6
+        - protobuf >=5.26
         - python-flatbuffers >=24.3.25
         - requests >=2.21.0,<3
         - six >=1.12

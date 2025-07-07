@@ -2,8 +2,12 @@
 
 set -exuo pipefail
 
+PY_VER=$($PREFIX/bin/python -c "import sys;print('.'.join(str(v) for v in sys.version_info[:2]))")
+
 # install the whl making sure to use host pip/python if cross-compiling
-${PYTHON} -m pip install --no-deps $SRC_DIR/tensorflow_pkg/*.whl
+${PYTHON} -m pip install --no-deps $SRC_DIR/tensorflow_pkg/*-cp${PY_VER/./}-*.whl
+
+sed -i.bak 's/cp312/cp${PY_VER/./}/g' ${SP_DIR}/tensorflow-2.18.0.dist-info/WHEEL
 
 if [[ "$target_platform" == "osx-"* ]]; then
   rm -rf ${SP_DIR}/tensorflow/libtensorflow.2.dylib

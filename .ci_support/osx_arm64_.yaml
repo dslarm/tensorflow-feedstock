@@ -40,6 +40,8 @@ libpng:
 - '1.6'
 libprotobuf:
 - 6.31.1
+libtensorflow_cc:
+- '2.16'
 macos_machine:
 - arm64-apple-darwin20.0.0
 microarch_level:
@@ -53,7 +55,10 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
+- 3.10.* *_cpython
+- 3.11.* *_cpython
 - 3.12.* *_cpython
+- 3.9.* *_cpython
 snappy:
 - '1.2'
 sqlite:

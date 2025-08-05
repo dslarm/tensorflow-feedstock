@@ -23,51 +23,12 @@ index 5d75ffd4a6d..e985a71b74e 100644
          },
          urls = tf_mirror_urls("https://github.com/protocolbuffers/protobuf/archive/v3.21.9.zip"),
      )
-@@ -792,6 +793,7 @@ def _tf_repositories():
+@@ -792,6 +793,8 @@ def _tf_repositories():
          strip_prefix = "pybind11_protobuf-80f3440cd8fee124e077e2e47a8a17b78b451363",
          patch_file = [
              "//third_party/pybind11_protobuf:remove_license.patch",
-+            "//third_party/pybind11_protobuf:0001-Add-Python-include-path.patch",
++            "//third_party/pybind11_protobuf:0001-DO-not-link-to-proto_api.patch",
++            "//third_party/pybind11_protobuf:0002-Add-Python-include-path.patch",
          ],
      )
  
-diff --git a/third_party/pybind11_protobuf/0001-Add-Python-include-path.patch b/third_party/pybind11_protobuf/0001-Add-Python-include-path.patch
-new file mode 100644
-index 00000000000..3d6508441c3
---- /dev/null
-+++ b/third_party/pybind11_protobuf/0001-Add-Python-include-path.patch
-@@ -0,0 +1,23 @@
-+From 3e7cd1a8ea5c67630a12e579748505b4c7ad4139 Mon Sep 17 00:00:00 2001
-+From: "Uwe L. Korn" <uwe.korn@quantco.com>
-+Date: Tue, 29 Aug 2023 21:33:08 +0200
-+Subject: [PATCH] Add Python include path
-+
-+---
-+ pybind11_protobuf/BUILD | 3 +++
-+ 1 file changed, 3 insertions(+)
-+
-+diff --git a/pybind11_protobuf/BUILD b/pybind11_protobuf/BUILD
-+index b62eb91..b3e5324 100644
-+--- a/pybind11_protobuf/BUILD
-++++ b/pybind11_protobuf/BUILD
-+@@ -87,6 +87,9 @@ cc_library(
-+     visibility = [
-+         "//visibility:private",
-+     ],
-++    copts = [
-++	"-I@@PREFIX@@/include/python@@PY_VER@@",
-++    ],
-+     deps = [
-+         "@com_google_absl//absl/container:flat_hash_map",
-+         "@com_google_absl//absl/container:flat_hash_set",
-diff --git a/third_party/systemlibs/protobuf_python.bzl b/third_party/systemlibs/protobuf_python.bzl
-new file mode 100644
-index 00000000000..982617a765c
---- /dev/null
-+++ b/third_party/systemlibs/protobuf_python.bzl
-@@ -0,0 +1,5 @@
-+cc_library(
-+    name = "proto_api",
-+   #  hdrs = ["google/protobuf/proto_api.h"],
-+    visibility = ["//visibility:public"],
-+)

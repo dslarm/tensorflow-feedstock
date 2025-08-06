@@ -5,10 +5,8 @@ Subject: [PATCH 04/29] Fix protobuf_python for systemlibs
 
 ---
  tensorflow/workspace2.bzl                     |  2 ++
- .../0001-Add-Python-include-path.patch        | 23 +++++++++++++++++++
  third_party/systemlibs/protobuf_python.bzl    |  5 ++++
  3 files changed, 30 insertions(+)
- create mode 100644 third_party/pybind11_protobuf/0001-Add-Python-include-path.patch
  create mode 100644 third_party/systemlibs/protobuf_python.bzl
 
 diff --git a/tensorflow/workspace2.bzl b/tensorflow/workspace2.bzl
@@ -23,12 +21,14 @@ index 5d75ffd4a6d..e985a71b74e 100644
          },
          urls = tf_mirror_urls("https://github.com/protocolbuffers/protobuf/archive/v3.21.9.zip"),
      )
-@@ -792,6 +793,8 @@ def _tf_repositories():
-         strip_prefix = "pybind11_protobuf-80f3440cd8fee124e077e2e47a8a17b78b451363",
-         patch_file = [
-             "//third_party/pybind11_protobuf:remove_license.patch",
-+            "//third_party/pybind11_protobuf:0001-DO-not-link-to-proto_api.patch",
-+            "//third_party/pybind11_protobuf:0002-Add-Python-include-path.patch",
-         ],
-     )
- 
+diff --git a/third_party/systemlibs/protobuf_python.bzl b/third_party/systemlibs/protobuf_python.bzl
+new file mode 100644
+index 00000000..982617a7
+--- /dev/null
++++ b/third_party/systemlibs/protobuf_python.bzl
+@@ -0,0 +1,5 @@
++cc_library(
++    name = "proto_api",
++   #  hdrs = ["google/protobuf/proto_api.h"],
++    visibility = ["//visibility:public"],
++)

@@ -17,7 +17,7 @@ index 3393167..cb7b5b0 100644
      srcs = ["check_unknown_fields.cc"],
      hdrs = ["check_unknown_fields.h"],
 +    copts = [
-+       "-I@@PREFIX@@/include/python@@PY_VER@@",
++       "-I@@PREFIX@@/include/python",
 +    ],
      deps = [
          "@com_google_absl//absl/container:flat_hash_map",
@@ -27,7 +27,7 @@ index 3393167..cb7b5b0 100644
          "//visibility:public",
      ],
 +    copts = [
-+       "-I@@PREFIX@@/include/python@@PY_VER@@",
++       "-I@@PREFIX@@/include/python",
 +    ],
      deps = [
          ":check_unknown_fields",

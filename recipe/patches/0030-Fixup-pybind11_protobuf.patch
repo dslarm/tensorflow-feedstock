@@ -13,7 +13,7 @@ diff --git a/tensorflow/workspace2.bzl b/tensorflow/workspace2.bzl
 index f149a218..f402d5eb 100644
 --- a/tensorflow/workspace2.bzl
 +++ b/tensorflow/workspace2.bzl
-@@ -788,12 +788,13 @@ def _tf_repositories():
+@@ -788,11 +788,13 @@ def _tf_repositories():
  
      tf_http_archive(
          name = "pybind11_protobuf",
@@ -25,7 +25,6 @@ index f149a218..f402d5eb 100644
 +        strip_prefix = "pybind11_protobuf-f02a2b7653bc50eb5119d125842a3870db95d251",
          patch_file = [
              "//third_party/pybind11_protobuf:remove_license.patch",
--            "//third_party/pybind11_protobuf:0001-Add-Python-include-path.patch",
 +            "//third_party/pybind11_protobuf:0001-DO-not-link-to-proto_api.patch",
 +            "//third_party/pybind11_protobuf:0002-Add-Python-include-path.patch",
          ],

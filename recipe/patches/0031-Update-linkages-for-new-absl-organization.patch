@@ -1,7 +1,7 @@
-From 0787c32848cc4d51d447bc809b18f81e3bf4b488 Mon Sep 17 00:00:00 2001
+From 6a3751fea172a4428d6cb984053c89ffdf32097c Mon Sep 17 00:00:00 2001
 From: Mark Harfouche <mark.harfouche@gmail.com>
 Date: Sun, 6 Jul 2025 17:32:42 -0400
-Subject: [PATCH 31/31] Update linkages for new absl organization
+Subject: [PATCH 31/39] Update linkages for new absl organization
 
 ---
  third_party/absl/system.absl.random.BUILD                       | 1 -
@@ -74,6 +74,3 @@ index db94fc99..623c0e96 100644
      deps = [
          "//absl/base:raw_logging_internal",
      ],
--- 
-2.43.0
-

@@ -1,7 +1,7 @@
-From e69de52e6cca7f4276a03ff45c489da20198c0ca Mon Sep 17 00:00:00 2001
+From 8e109f0a1d2abe59dd64a3cf601f8ae552c1b16b Mon Sep 17 00:00:00 2001
 From: Mark Harfouche <mark.harfouche@gmail.com>
 Date: Sun, 2 Feb 2025 08:32:46 -0500
-Subject: [PATCH 28/29] Avoid linking with internal nvrtc
+Subject: [PATCH 28/39] Avoid linking with internal nvrtc
 
 ---
  third_party/gpus/cuda/hermetic/cuda_nvrtc.BUILD.tpl          | 5 -----
@@ -9,7 +9,7 @@ Subject: [PATCH 28/29] Avoid linking with internal nvrtc
  2 files changed, 10 deletions(-)
 
 diff --git a/third_party/gpus/cuda/hermetic/cuda_nvrtc.BUILD.tpl b/third_party/gpus/cuda/hermetic/cuda_nvrtc.BUILD.tpl
-index fea4c5d7ce7..1f6f8fc3577 100644
+index fea4c5d7..1f6f8fc3 100644
 --- a/third_party/gpus/cuda/hermetic/cuda_nvrtc.BUILD.tpl
 +++ b/third_party/gpus/cuda/hermetic/cuda_nvrtc.BUILD.tpl
 @@ -10,16 +10,11 @@ cc_import(
@@ -30,7 +30,7 @@ index fea4c5d7ce7..1f6f8fc3577 100644
      %{comment}linkopts = cuda_rpath_flags("nvidia/cuda_nvrtc/lib"),
      visibility = ["//visibility:public"],
 diff --git a/third_party/xla/third_party/tsl/third_party/gpus/cuda/hermetic/cuda_nvrtc.BUILD.tpl b/third_party/xla/third_party/tsl/third_party/gpus/cuda/hermetic/cuda_nvrtc.BUILD.tpl
-index fea4c5d7ce7..1f6f8fc3577 100644
+index fea4c5d7..1f6f8fc3 100644
 --- a/third_party/xla/third_party/tsl/third_party/gpus/cuda/hermetic/cuda_nvrtc.BUILD.tpl
 +++ b/third_party/xla/third_party/tsl/third_party/gpus/cuda/hermetic/cuda_nvrtc.BUILD.tpl
 @@ -10,16 +10,11 @@ cc_import(

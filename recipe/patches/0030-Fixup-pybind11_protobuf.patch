@@ -1,16 +1,16 @@
-From a3e1a50a5489d559eb64e4498f7a5f06cd725243 Mon Sep 17 00:00:00 2001
+From 0f05a74978c7269c8d62e26e5b1e8c9a97dd7b40 Mon Sep 17 00:00:00 2001
 From: Mark Harfouche <mark.harfouche@gmail.com>
 Date: Sun, 6 Jul 2025 16:45:03 -0400
-Subject: [PATCH 30/31] Fixup pybind11_protobuf
+Subject: [PATCH 30/39] Fixup pybind11_protobuf
 
 ---
- tensorflow/workspace2.bzl                          |  9 +++++----
+ tensorflow/workspace2.bzl                          |  8 +++++---
  third_party/pybind11_protobuf/remove_license.patch | 10 +++++-----
  third_party/xla/workspace2.bzl                     | 11 ++++++++---
- 3 files changed, 18 insertions(+), 12 deletions(-)
+ 3 files changed, 18 insertions(+), 11 deletions(-)
 
 diff --git a/tensorflow/workspace2.bzl b/tensorflow/workspace2.bzl
-index f149a218..f402d5eb 100644
+index eaab025f..f402d5eb 100644
 --- a/tensorflow/workspace2.bzl
 +++ b/tensorflow/workspace2.bzl
 @@ -788,11 +788,13 @@ def _tf_repositories():
@@ -76,6 +76,3 @@ index a1e98c62..2adf2bcd 100644
      )
  
  # buildifier: disable=function-docstring
--- 
-2.43.0
-

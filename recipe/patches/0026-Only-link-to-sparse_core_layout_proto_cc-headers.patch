@@ -1,14 +1,14 @@
-From e4d4c2bad09b52d1c31684ff40efec237ce4b04b Mon Sep 17 00:00:00 2001
+From a1d40dfbcc9d5cef36d92728722d8a0d9b43b19a Mon Sep 17 00:00:00 2001
 From: "Uwe L. Korn" <uwe.korn@quantco.com>
 Date: Tue, 16 Jul 2024 17:18:23 +0200
-Subject: [PATCH 26/29] Only link to sparse_core_layout_proto_cc headers
+Subject: [PATCH 26/39] Only link to sparse_core_layout_proto_cc headers
 
 ---
  tensorflow/core/tpu/kernels/BUILD | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/tensorflow/core/tpu/kernels/BUILD b/tensorflow/core/tpu/kernels/BUILD
-index e65eea35bd0..5f10b019634 100644
+index e65eea35..5f10b019 100644
 --- a/tensorflow/core/tpu/kernels/BUILD
 +++ b/tensorflow/core/tpu/kernels/BUILD
 @@ -1486,7 +1486,7 @@ cc_library(

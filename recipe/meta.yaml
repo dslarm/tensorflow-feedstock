@@ -590,6 +590,7 @@ about:
 extra:
   feedstock-name: tensorflow
   recipe-maintainers:
+    - isuruf
     - ngam
     - farhantejani
     - ghego

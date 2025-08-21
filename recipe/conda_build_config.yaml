@@ -10,7 +10,11 @@ libgrpc:
 - '1.67'
 libprotobuf:
 - 5.28.3
-
+python:
+  - 3.9
+  - 3.10
+  - 3.11
+  - 3.12
 # problem with vendored xnnpack on with gcc 14 at time of tensorflow 2.18 - check again for future releases
 cxx_compiler_version:  # [linux]
   - 13  # [linux]

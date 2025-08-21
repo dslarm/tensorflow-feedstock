@@ -59,6 +59,7 @@ source:
       - patches/0031-bump-h5py-req.patch     # [aarch64]
       # backport https://github.com/tensorflow/tensorflow/pull/90563 (applies to cuda-12.8, any platform)
       - patches/0032-gpu_prim-error.patch
+      - patches/0033-cross-arch-config.patch  # [aarch64 and target_platform != build_platform]
   - url: https://github.com/tensorflow/estimator/archive/refs/tags/v{{ estimator_version.replace(".rc", "-rc") }}.tar.gz
     sha256: 2d7e100b1878084da34b5e23b49a0cbb5ee8a7add74b7dd189a82ada1cf85530
     folder: tensorflow-estimator
@@ -104,6 +105,8 @@ requirements:
     # realpath is not available from the docker image for cuda <= 10.2
     # so we install coreutils here
     - coreutils  # [cuda_compiler_version != "None"]
+    - zlib       # [build_platform != target_platform]
+    - libcurl    # [build_platform != target_platform]
   host:
     # GPU requirements for CUDA
     - cudnn      # [cuda_compiler_version != "None"]
@@ -363,7 +366,7 @@ outputs:
       requires:
         - pip
       imports:
-        - tensorflow
+        - tensorflow                 # [build_platform == target_platform]
       commands:
         - pip check                  # [build_platform == target_platform]
         - cat test_tensorflow.py     # [unix]
@@ -374,10 +377,10 @@ outputs:
         - tflite_convert --help      # [build_platform == target_platform]
         - toco_from_protos --help    # [build_platform == target_platform]
         - toco --help                # [build_platform == target_platform]
-        - python -c 'import tensorflow as tf; assert tf.test.is_built_with_cuda()'      # [cuda_compiler_version != "None"]
-        - python -c 'import tensorflow as tf; assert not tf.test.is_built_with_cuda()'  # [cuda_compiler_version == "None"]
+        - python -c 'import tensorflow as tf; assert tf.test.is_built_with_cuda()'      # [cuda_compiler_version != "None" and build_platform == target_platform]
+        - python -c 'import tensorflow as tf; assert not tf.test.is_built_with_cuda()'  # [cuda_compiler_version == "None" and build_platform == target_platform]
         # See https://github.com/conda-forge/tensorflow-feedstock/issues/364
-        - python -c "import tensorflow as tf;graph = tf.function(lambda x:x).get_concrete_function(1.).graph;tf.compat.v1.train.export_meta_graph(graph=graph,graph_def=graph.as_graph_def())"
+        - python -c "import tensorflow as tf;graph = tf.function(lambda x:x).get_concrete_function(1.).graph;tf.compat.v1.train.export_meta_graph(graph=graph,graph_def=graph.as_graph_def())"  # [build_platform == target_platform]
 
   - name: tensorflow-estimator
     script: build_estimator.sh  # [unix]
@@ -536,7 +539,7 @@ outputs:
         - {{ pin_subpackage("tensorflow", exact=True) }}
     test:
       imports:
-        - tensorflow
+        - tensorflow                 # [build_platform == target_platform]
 
   - name: tensorflow-gpu
     build:
@@ -547,7 +550,7 @@ outputs:
         - {{ pin_subpackage("tensorflow", exact=True) }}
     test:
       imports:
-        - tensorflow
+        - tensorflow                 # [build_platform == target_platform]
 
   - name: tensorflow-sse3
     build:

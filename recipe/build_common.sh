@@ -2,13 +2,6 @@
 
 set -ex
 
-if [[ "${target_platform}" == "linux-aarch64" && "${CI}" == "azure" ]];
-then
-  echo "ERROR: don't use Azure (2025/05/07) as it will be emulated and waste CI time"
-  echo "When native aarch64 Azure builders are available, this check can be removed"
-  exit 1
-fi
-
 if [[ "${CI:-}" == "github_actions" ]]; then
   export CPU_COUNT=4
 fi

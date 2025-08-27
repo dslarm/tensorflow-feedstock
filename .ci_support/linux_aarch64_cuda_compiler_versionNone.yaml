@@ -16,14 +16,12 @@ cuda_compiler:
 - cuda-nvcc
 cuda_compiler_version:
 - None
-cudnn:
-- '9'
 cxx_compiler:
 - gxx
 cxx_compiler_version:
 - '13'
 docker_image:
-- quay.io/condaforge/linux-anvil-aarch64:alma9
+- quay.io/condaforge/linux-anvil-x86_64:alma9
 flatbuffers:
 - 24.12.23
 giflib:
@@ -48,8 +46,6 @@ libtensorflow_cc:
 - '2.16'
 microarch_level:
 - '1'
-nccl:
-- '2'
 numpy:
 - '2'
 openssl:
@@ -61,10 +57,10 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.10.* *_cpython
-- 3.11.* *_cpython
-- 3.12.* *_cpython
-- 3.9.* *_cpython
+- '3.10'
+- '3.11'
+- '3.12'
+- '3.9'
 snappy:
 - '1.2'
 sqlite:
@@ -76,6 +72,7 @@ tensorflow:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
+  - c_stdlib_version
   - cuda_compiler_version
 zlib:
 - '1'

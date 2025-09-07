@@ -214,6 +214,9 @@ outputs:
     script: build_pkg.sh  # [unix]
     script: build_pkg.bat  # [win]
     build:
+      # tensorflow 2.18 doesn't support py313 until 2.20, see
+      # https://github.com/tensorflow/tensorflow/issues/78774
+      skip: true  # [py==313]
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
       string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
       # weigh down cpu implementation and give cuda preference
@@ -339,6 +342,9 @@ outputs:
 
   - name: tensorflow
     build:
+      # tensorflow 2.18 doesn't support py313 until 2.20, see
+      # https://github.com/tensorflow/tensorflow/issues/78774
+      skip: true  # [py==313]
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
       string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
       # weigh down cpu implementation and give cuda preference
@@ -384,6 +390,9 @@ outputs:
     script: build_estimator.sh  # [unix]
     script: build_estimator.bat  # [win]
     build:
+      # tensorflow 2.18 doesn't support py313 until 2.20, see
+      # https://github.com/tensorflow/tensorflow/issues/78774
+      skip: true  # [py==313]
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
       string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
     requirements:

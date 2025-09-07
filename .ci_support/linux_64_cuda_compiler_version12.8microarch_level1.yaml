@@ -15,7 +15,9 @@ channel_targets:
 cuda_compiler:
 - cuda-nvcc
 cuda_compiler_version:
-- None
+- '12.8'
+cudnn:
+- '9'
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -46,6 +48,8 @@ libtensorflow_cc:
 - '2.16'
 microarch_level:
 - '1'
+nccl:
+- '2'
 numpy:
 - '2'
 openssl:
@@ -57,16 +61,16 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- '3.10'
-- '3.11'
-- '3.12'
-- '3.9'
+- 3.10.* *_cpython
+- 3.11.* *_cpython
+- 3.12.* *_cpython
+- 3.13.* *_cp313
 snappy:
 - '1.2'
 sqlite:
 - '3'
 target_platform:
-- linux-aarch64
+- linux-64
 tensorflow:
 - '2.16'
 zip_keys:

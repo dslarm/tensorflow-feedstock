@@ -10,7 +10,6 @@ __migrator:
   use_local: true
   override_cbc_keys:
     - cuda_compiler_stub
-  operation: key_add
   check_solvable: false
   primary_key: cuda_compiler_version
   ordering:
@@ -32,6 +31,8 @@ __migrator:
 cuda_compiler_version:         # [linux and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
   - 12.8                       # [linux and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
 
+c_stdlib_version:              # [linux and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
+  - 2.17                       # [linux and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
 
 c_compiler_version:            # [linux and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
   - 13                         # [linux and x86_64 and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]

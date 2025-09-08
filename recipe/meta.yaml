@@ -562,6 +562,9 @@ outputs:
   - name: tensorflow-sse3
     build:
       skip: True  # [(not x86_64) or microarch_level != 1]
+      # tensorflow 2.18 doesn't support py313 until 2.20, see
+      # https://github.com/tensorflow/tensorflow/issues/78774
+      skip: true  # [py==313]
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
       string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                # [cuda_compiler_version == "None"]
     requirements:
@@ -577,6 +580,9 @@ outputs:
   - name: tensorflow-avx2
     build:
       skip: True  # [(not x86_64) or microarch_level != 3]
+      # tensorflow 2.18 doesn't support py313 until 2.20, see
+      # https://github.com/tensorflow/tensorflow/issues/78774
+      skip: true  # [py==313]
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
       string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                # [cuda_compiler_version == "None"]
     requirements:
@@ -592,6 +598,9 @@ outputs:
   - name: tensorflow-avx512
     build:
       skip: True  # [(not x86_64) or microarch_level != 4]
+      # tensorflow 2.18 doesn't support py313 until 2.20, see
+      # https://github.com/tensorflow/tensorflow/issues/78774
+      skip: true  # [py==313]
       string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
       string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                # [cuda_compiler_version == "None"]
     requirements:

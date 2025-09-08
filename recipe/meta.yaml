@@ -539,22 +539,22 @@ outputs:
 
   - name: tensorflow-cpu
     build:
-      string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+      string: cpu_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       skip: True  # [cuda_compiler_version != "None"]
     requirements:
       run:
-        - {{ pin_subpackage("tensorflow", exact=True) }}
+        - tensorflow {{ version }} cpu*_{{ PKG_BUILDNUM }}
     test:
       imports:
         - tensorflow                 # [build_platform == target_platform]
 
   - name: tensorflow-gpu
     build:
-      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       skip: True  # [cuda_compiler_version == "None"]
     requirements:
       run:
-        - {{ pin_subpackage("tensorflow", exact=True) }}
+        - tensorflow {{ version }} cuda{{ cuda_compiler_version | replace('.', '') }}*_{{ PKG_BUILDNUM }}
     test:
       imports:
         - tensorflow                 # [build_platform == target_platform]
@@ -562,7 +562,12 @@ outputs:
   - name: tensorflow-sse3
     build:
       skip: True  # [(not x86_64) or microarch_level != 1]
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
+      string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                # [cuda_compiler_version == "None"]
     requirements:
+      host:
+        # need to build per python version to pin to exact tensorflow package-hashes corresponding to sse3
+        - python
       run:
         - {{ pin_subpackage("tensorflow", exact=True) }}
     test:
@@ -572,7 +577,12 @@ outputs:
   - name: tensorflow-avx2
     build:
       skip: True  # [(not x86_64) or microarch_level != 3]
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
+      string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                # [cuda_compiler_version == "None"]
     requirements:
+      host:
+        # need to build per python version to pin to exact tensorflow package-hashes corresponding to avx2
+        - python
       run:
         - {{ pin_subpackage("tensorflow", exact=True) }}
     test:
@@ -582,7 +592,12 @@ outputs:
   - name: tensorflow-avx512
     build:
       skip: True  # [(not x86_64) or microarch_level != 4]
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
+      string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                # [cuda_compiler_version == "None"]
     requirements:
+      host:
+        # need to build per python version to pin to exact tensorflow package-hashes corresponding to avx512
+        - python
       run:
         - {{ pin_subpackage("tensorflow", exact=True) }}
     test:

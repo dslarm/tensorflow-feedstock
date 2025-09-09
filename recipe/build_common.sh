@@ -116,7 +116,7 @@ if [[ ${cuda_compiler_version} != "None" ]]; then
     export LDFLAGS="${LDFLAGS//-Wl,-z,now/-Wl,-z,lazy}"
 
     if [[ "${cuda_compiler_version}" == 12* ]]; then
-        export HERMETIC_CUDA_COMPUTE_CAPABILITIES=sm_60,sm_70,sm_75,sm_80,sm_86,sm_89,sm_90
+        export HERMETIC_CUDA_COMPUTE_CAPABILITIES=sm_60,sm_70,sm_75,sm_80,sm_86,sm_89,sm_90,compute_90
         export CUDNN_INSTALL_PATH=$PREFIX
         export NCCL_INSTALL_PATH=$PREFIX
         export CUDA_HOME="${BUILD_PREFIX}/targets/${NVARCH}-linux"

@@ -67,8 +67,8 @@ source:
 build:
   number: {{ build }}
   skip: true  # [win]
-  # aarch64 support added only for CUDA 12.8+
-  skip: true  # [cuda_compiler_version == "12.6" and target_platform == "linux-aarch64"]
+  # TODO: debug issues with CUDA cross-compilation
+  skip: true  # [aarch64 and cuda_compiler_version != "None"]
 
 requirements:
   build:

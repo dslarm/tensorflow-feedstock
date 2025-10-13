@@ -1,0 +1,22 @@
+--- message_lite.h	2025-10-13 20:53:04.911396851 +0000
++++ message_lite.h	2025-10-13 20:52:09.752522286 +0000
+@@ -281,11 +281,19 @@
+ template <typename T>
+ using MessageTraits = decltype(MessageTraitsImpl::value<T>);
+ 
++
++#ifdef __CUDACC__
++struct EnumTraitsImpl {
++  template <typename T>
++  static std::enable_if_t<sizeof(T) != 0> value;
++};
++#else
+ struct EnumTraitsImpl {
+   struct Undefined;
+   template <typename T>
+   static Undefined value;
+ };
++#endif
+ template <typename T>
+ using EnumTraits = decltype(EnumTraitsImpl::value<T>);
+ 

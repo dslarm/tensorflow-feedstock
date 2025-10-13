@@ -1,7 +1,7 @@
-From 99382c31ffe2eaf01fc4b3abc9b7c776b6060521 Mon Sep 17 00:00:00 2001
+From 26467a0a05242d0a46f5d3abdaaff9050bc06ad3 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <ifernando@quansight.com>
 Date: Wed, 6 Aug 2025 15:36:13 +0000
-Subject: [PATCH 37/39] add absl_tracing_internal
+Subject: [PATCH 37/41] add absl_tracing_internal
 
 ---
  tensorflow/core/kernels/batching_util/BUILD | 1 +
@@ -9,7 +9,7 @@ Subject: [PATCH 37/39] add absl_tracing_internal
  2 files changed, 8 insertions(+)
 
 diff --git a/tensorflow/core/kernels/batching_util/BUILD b/tensorflow/core/kernels/batching_util/BUILD
-index f953c4de..2b585305 100644
+index f953c4de7e7..2b5853055b3 100644
 --- a/tensorflow/core/kernels/batching_util/BUILD
 +++ b/tensorflow/core/kernels/batching_util/BUILD
 @@ -466,6 +466,7 @@ cc_library(
@@ -21,7 +21,7 @@ index f953c4de..2b585305 100644
      ],
  )
 diff --git a/third_party/absl/system.absl.base.BUILD b/third_party/absl/system.absl.base.BUILD
-index b31592d3..65347936 100644
+index b31592d31a3..6534793637c 100644
 --- a/third_party/absl/system.absl.base.BUILD
 +++ b/third_party/absl/system.absl.base.BUILD
 @@ -25,6 +25,13 @@ cc_library(

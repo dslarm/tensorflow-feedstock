@@ -1,7 +1,7 @@
-From 6a3751fea172a4428d6cb984053c89ffdf32097c Mon Sep 17 00:00:00 2001
+From 0e7434e753fc57ae6aad9569b914cc82b5292870 Mon Sep 17 00:00:00 2001
 From: Mark Harfouche <mark.harfouche@gmail.com>
 Date: Sun, 6 Jul 2025 17:32:42 -0400
-Subject: [PATCH 31/39] Update linkages for new absl organization
+Subject: [PATCH 31/41] Update linkages for new absl organization
 
 ---
  third_party/absl/system.absl.random.BUILD                       | 1 -
@@ -11,7 +11,7 @@ Subject: [PATCH 31/39] Update linkages for new absl organization
  4 files changed, 6 deletions(-)
 
 diff --git a/third_party/absl/system.absl.random.BUILD b/third_party/absl/system.absl.random.BUILD
-index ac17ce63..71aaa9a1 100644
+index ac17ce6343b..71aaa9a1cd5 100644
 --- a/third_party/absl/system.absl.random.BUILD
 +++ b/third_party/absl/system.absl.random.BUILD
 @@ -30,7 +30,6 @@ cc_library(
@@ -23,7 +23,7 @@ index ac17ce63..71aaa9a1 100644
          "-labsl_random_internal_randen_hwaes",
          "-labsl_random_internal_randen_hwaes_impl",
 diff --git a/third_party/absl/system.absl.types.BUILD b/third_party/absl/system.absl.types.BUILD
-index db94fc99..623c0e96 100644
+index db94fc99185..623c0e96126 100644
 --- a/third_party/absl/system.absl.types.BUILD
 +++ b/third_party/absl/system.absl.types.BUILD
 @@ -30,7 +30,6 @@ cc_library(
@@ -43,7 +43,7 @@ index db94fc99..623c0e96 100644
          "//absl/base:raw_logging_internal",
      ],
 diff --git a/third_party/xla/third_party/tsl/third_party/absl/system.absl.random.BUILD b/third_party/xla/third_party/tsl/third_party/absl/system.absl.random.BUILD
-index ac17ce63..71aaa9a1 100644
+index ac17ce6343b..71aaa9a1cd5 100644
 --- a/third_party/xla/third_party/tsl/third_party/absl/system.absl.random.BUILD
 +++ b/third_party/xla/third_party/tsl/third_party/absl/system.absl.random.BUILD
 @@ -30,7 +30,6 @@ cc_library(
@@ -55,7 +55,7 @@ index ac17ce63..71aaa9a1 100644
          "-labsl_random_internal_randen_hwaes",
          "-labsl_random_internal_randen_hwaes_impl",
 diff --git a/third_party/xla/third_party/tsl/third_party/absl/system.absl.types.BUILD b/third_party/xla/third_party/tsl/third_party/absl/system.absl.types.BUILD
-index db94fc99..623c0e96 100644
+index db94fc99185..623c0e96126 100644
 --- a/third_party/xla/third_party/tsl/third_party/absl/system.absl.types.BUILD
 +++ b/third_party/xla/third_party/tsl/third_party/absl/system.absl.types.BUILD
 @@ -30,7 +30,6 @@ cc_library(

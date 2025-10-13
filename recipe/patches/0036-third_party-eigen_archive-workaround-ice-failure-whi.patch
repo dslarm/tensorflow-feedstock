@@ -1,7 +1,7 @@
-From 888bca1efda8833cc25023e65da3e20e08ca26c0 Mon Sep 17 00:00:00 2001
+From 98d2b8a662865334a04a46675ae3a4259e08b362 Mon Sep 17 00:00:00 2001
 From: Hongxu Jia <hongxu.jia@windriver.com>
 Date: Mon, 16 May 2022 23:15:47 -0700
-Subject: [PATCH 36/39] third_party/eigen_archive:workaround ice failure while
+Subject: [PATCH 36/41] third_party/eigen_archive:workaround ice failure while
  building from source with gcc 7.3.1
 
 The root cause is gcc ice issue:
@@ -21,7 +21,7 @@ Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
 
 diff --git a/third_party/eigen3/0001-workaround-ice-failure-while-building-from-source-wi.patch b/third_party/eigen3/0001-workaround-ice-failure-while-building-from-source-wi.patch
 new file mode 100644
-index 00000000..82ef62a0
+index 00000000000..82ef62a0d9a
 --- /dev/null
 +++ b/third_party/eigen3/0001-workaround-ice-failure-while-building-from-source-wi.patch
 @@ -0,0 +1,68 @@
@@ -94,7 +94,7 @@ index 00000000..82ef62a0
 +2.27.0
 +
 diff --git a/third_party/eigen3/workspace.bzl b/third_party/eigen3/workspace.bzl
-index f06eca36..40bdebd6 100644
+index f06eca368c1..40bdebd6796 100644
 --- a/third_party/eigen3/workspace.bzl
 +++ b/third_party/eigen3/workspace.bzl
 @@ -14,6 +14,7 @@ def repo():

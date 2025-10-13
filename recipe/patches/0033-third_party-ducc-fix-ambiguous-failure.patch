@@ -1,7 +1,7 @@
-From f2a5e7aeb8370c9d1536851fc432860d5227e0eb Mon Sep 17 00:00:00 2001
+From b53fc0aebaee09319e32161c2c7e7c0cd24d1d9f Mon Sep 17 00:00:00 2001
 From: Hongxu Jia <hongxu.jia@windriver.com>
 Date: Mon, 14 Jul 2025 15:35:54 +0800
-Subject: [PATCH 33/39] third_party/ducc: fix ambiguous failure
+Subject: [PATCH 33/41] third_party/ducc: fix ambiguous failure
 
 ...
 bazel-out/k8-opt/bin/external/ducc/_virtual_includes/fft/ducc/src/ducc0/fft/fftnd_impl.h:1393:20: error: call of '(ducc0::detail_mav::vmav<std::complex<float>, 2>) (long unsigned int&, size_t&)' is ambiguous
@@ -31,7 +31,7 @@ Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
 
 diff --git a/third_party/ducc/0001-fix-ambiguous-failure.patch b/third_party/ducc/0001-fix-ambiguous-failure.patch
 new file mode 100644
-index 00000000..2abb2848
+index 00000000000..2abb2848952
 --- /dev/null
 +++ b/third_party/ducc/0001-fix-ambiguous-failure.patch
 @@ -0,0 +1,51 @@
@@ -87,7 +87,7 @@ index 00000000..2abb2848
 +2.34.1
 +
 diff --git a/third_party/ducc/ducc.BUILD b/third_party/ducc/ducc.BUILD
-index a1c4956d..c82f1247 100644
+index a1c4956d0a7..c82f1247629 100644
 --- a/third_party/ducc/ducc.BUILD
 +++ b/third_party/ducc/ducc.BUILD
 @@ -9,6 +9,7 @@ DUCC_COPTS = [
@@ -99,7 +99,7 @@ index a1c4956d..c82f1247 100644
  
  # This library exposes the raw DUCC fft API.  It should be used
 diff --git a/third_party/ducc/workspace.bzl b/third_party/ducc/workspace.bzl
-index 99c8b14c..0168c5e9 100644
+index 99c8b14cd9f..0168c5e9886 100644
 --- a/third_party/ducc/workspace.bzl
 +++ b/third_party/ducc/workspace.bzl
 @@ -11,6 +11,9 @@ def repo():

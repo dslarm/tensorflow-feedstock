@@ -1,7 +1,7 @@
-From 0f05a74978c7269c8d62e26e5b1e8c9a97dd7b40 Mon Sep 17 00:00:00 2001
+From 3e45daedd0fbd56d9ea2fca66a95b5e7561c4151 Mon Sep 17 00:00:00 2001
 From: Mark Harfouche <mark.harfouche@gmail.com>
 Date: Sun, 6 Jul 2025 16:45:03 -0400
-Subject: [PATCH 30/39] Fixup pybind11_protobuf
+Subject: [PATCH 30/41] Fixup pybind11_protobuf
 
 ---
  tensorflow/workspace2.bzl                          |  8 +++++---
@@ -10,7 +10,7 @@ Subject: [PATCH 30/39] Fixup pybind11_protobuf
  3 files changed, 18 insertions(+), 11 deletions(-)
 
 diff --git a/tensorflow/workspace2.bzl b/tensorflow/workspace2.bzl
-index eaab025f..f402d5eb 100644
+index eaab025f55f..f402d5eb2a4 100644
 --- a/tensorflow/workspace2.bzl
 +++ b/tensorflow/workspace2.bzl
 @@ -788,11 +788,13 @@ def _tf_repositories():
@@ -31,7 +31,7 @@ index eaab025f..f402d5eb 100644
      )
  
 diff --git a/third_party/pybind11_protobuf/remove_license.patch b/third_party/pybind11_protobuf/remove_license.patch
-index 2e41474e..7180fa81 100644
+index 2e41474ee4a..7180fa8167e 100644
 --- a/third_party/pybind11_protobuf/remove_license.patch
 +++ b/third_party/pybind11_protobuf/remove_license.patch
 @@ -1,13 +1,13 @@
@@ -55,7 +55,7 @@ index 2e41474e..7180fa81 100644
 \ No newline at end of file
 +     hdrs = ["enum_type_caster.h"],
 diff --git a/third_party/xla/workspace2.bzl b/third_party/xla/workspace2.bzl
-index a1e98c62..2adf2bcd 100644
+index a1e98c628e7..2adf2bcd80b 100644
 --- a/third_party/xla/workspace2.bzl
 +++ b/third_party/xla/workspace2.bzl
 @@ -153,9 +153,14 @@ def _tf_repositories():

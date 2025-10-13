@@ -1,7 +1,7 @@
-From 6c53c57288458aae912cb92d4d8507d4fc329eeb Mon Sep 17 00:00:00 2001
+From e3ccc6eab6a708cf57bca45dcb8f7afc23156cfb Mon Sep 17 00:00:00 2001
 From: Hongxu Jia <hongxu.jia@windriver.com>
 Date: Mon, 14 Jul 2025 16:13:33 +0800
-Subject: [PATCH 34/39] third_party/tf_runtime: fix compile failure
+Subject: [PATCH 34/41] third_party/tf_runtime: fix compile failure
 
 ...
 In file included from external/tf_runtime/include/tfrt/support/crc32c.h:26,
@@ -25,7 +25,7 @@ Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
 
 diff --git a/third_party/tf_runtime/0001-fix-compile-failure.patch b/third_party/tf_runtime/0001-fix-compile-failure.patch
 new file mode 100644
-index 00000000..c05ea5b4
+index 00000000000..c05ea5b41e7
 --- /dev/null
 +++ b/third_party/tf_runtime/0001-fix-compile-failure.patch
 @@ -0,0 +1,36 @@
@@ -66,7 +66,7 @@ index 00000000..c05ea5b4
 +2.34.1
 +
 diff --git a/third_party/tf_runtime/workspace.bzl b/third_party/tf_runtime/workspace.bzl
-index 69fc0f81..460641dd 100644
+index 69fc0f81f6f..460641dde06 100644
 --- a/third_party/tf_runtime/workspace.bzl
 +++ b/third_party/tf_runtime/workspace.bzl
 @@ -18,7 +18,7 @@ def repo():

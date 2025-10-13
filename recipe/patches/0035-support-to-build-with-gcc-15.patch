@@ -1,7 +1,7 @@
-From 555c65201eda496202dbc7f6a1e3d672c0de9809 Mon Sep 17 00:00:00 2001
+From 32ce8d77beabcc754ec5ae2b446ff7f2f3378251 Mon Sep 17 00:00:00 2001
 From: Hongxu Jia <hongxu.jia@windriver.com>
 Date: Tue, 25 Mar 2025 22:38:37 -0700
-Subject: [PATCH 35/39] support to build with gcc 15
+Subject: [PATCH 35/41] support to build with gcc 15
 
 Upstream-Status: Pending
 
@@ -18,7 +18,7 @@ Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
 
 diff --git a/third_party/absl/0001-PR-1739-container-internal-Explicitly-include-cstdin.patch b/third_party/absl/0001-PR-1739-container-internal-Explicitly-include-cstdin.patch
 new file mode 100644
-index 00000000..02f6385b
+index 00000000000..02f6385b5c6
 --- /dev/null
 +++ b/third_party/absl/0001-PR-1739-container-internal-Explicitly-include-cstdin.patch
 @@ -0,0 +1,35 @@
@@ -58,7 +58,7 @@ index 00000000..02f6385b
 +2.25.1
 +
 diff --git a/third_party/absl/workspace.bzl b/third_party/absl/workspace.bzl
-index 0bb3fbbf..ae625985 100644
+index 0bb3fbbf074..ae6259859a1 100644
 --- a/third_party/absl/workspace.bzl
 +++ b/third_party/absl/workspace.bzl
 @@ -48,5 +48,6 @@ def repo():
@@ -70,7 +70,7 @@ index 0bb3fbbf..ae625985 100644
      )
 diff --git a/third_party/xla/third_party/tsl/third_party/absl/0001-PR-1739-container-internal-Explicitly-include-cstdin.patch b/third_party/xla/third_party/tsl/third_party/absl/0001-PR-1739-container-internal-Explicitly-include-cstdin.patch
 new file mode 100644
-index 00000000..02f6385b
+index 00000000000..02f6385b5c6
 --- /dev/null
 +++ b/third_party/xla/third_party/tsl/third_party/absl/0001-PR-1739-container-internal-Explicitly-include-cstdin.patch
 @@ -0,0 +1,35 @@
@@ -110,7 +110,7 @@ index 00000000..02f6385b
 +2.25.1
 +
 diff --git a/third_party/xla/third_party/tsl/third_party/absl/workspace.bzl b/third_party/xla/third_party/tsl/third_party/absl/workspace.bzl
-index d5973b13..c9004e92 100644
+index d5973b13b39..c9004e92df8 100644
 --- a/third_party/xla/third_party/tsl/third_party/absl/workspace.bzl
 +++ b/third_party/xla/third_party/tsl/third_party/absl/workspace.bzl
 @@ -46,5 +46,6 @@ def repo():

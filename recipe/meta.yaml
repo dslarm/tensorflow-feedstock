@@ -109,6 +109,7 @@ requirements:
     - x86_64-microarch-level  {{ microarch_level }}  # [linux and x86_64]
     - bazel 6.*
     - bazel-toolchain
+    - bazel-toolchain <0.3                   # [osx]
     - libgrpc
     - libprotobuf
     - nasm

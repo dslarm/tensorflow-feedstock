@@ -239,14 +239,13 @@ outputs:
       track_features:
         - tensorflow-cpu          # [cuda_compiler_version == "None"]
       entry_points:
-        - toco_from_protos = tensorflow.lite.toco.python.toco_from_protos:main
         - tflite_convert = tensorflow.lite.python.tflite_convert:main
         - toco = tensorflow.lite.python.tflite_convert:main
         - saved_model_cli = tensorflow.python.tools.saved_model_cli:main
+        - import_pb_to_tensorboard=tensorflow.python.tools.import_pb_to_tensorboard:main
         # The tensorboard package adds this entry point.
         # - tensorboard = tensorboard.main:run_main
         - tf_upgrade_v2 = tensorflow.tools.compatibility.tf_upgrade_v2_main:main
-        - estimator_ckpt_converter = tensorflow_estimator.python.estimator.tools.checkpoint_converter:main
     requirements:
       # build requirements needs to pick up the compiler run_exports
       build:
@@ -395,7 +394,6 @@ outputs:
         # --help exits with exit code 1
         - test -x $PREFIX/bin/saved_model_cli  # [unix]
         - tflite_convert --help      # [build_platform == target_platform]
-        - toco_from_protos --help    # [build_platform == target_platform]
         - toco --help                # [build_platform == target_platform]
         - python -c 'import tensorflow as tf; assert tf.test.is_built_with_cuda()'      # [cuda_compiler_version != "None" and build_platform == target_platform]
         - python -c 'import tensorflow as tf; assert not tf.test.is_built_with_cuda()'  # [cuda_compiler_version == "None" and build_platform == target_platform]

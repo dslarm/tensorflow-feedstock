@@ -1,3 +1,11 @@
+# aarch has issues with newer GCC
+c_compiler_version:             # [aarch64]
+  - 11                          # [aarch64]
+  - 11                          # [aarch64]
+cxx_compiler_version:           # [aarch64]
+  - 11                          # [aarch64]
+  - 11                          # [aarch64]
+
 github_actions_labels:          # [linux]
 - cirun-openstack-cpu-2xlarge   # [linux]
 microarch_level:

@@ -1,6 +1,6 @@
-{% set version = "2.18.0" %}
+{% set version = "2.19.1" %}
 {% set estimator_version = "2.15.0" %}
-{% set build = 2 %}
+{% set build = 0 %}
 
 {% if cuda_compiler_version != "None" %}
 {% set build = build + 200 %}
@@ -14,8 +14,8 @@
 
 # Quite often libml_dtypes-headers and ml_dtypes diverge.
 # https://github.com/tensorflow/tensorflow/blob/v2.18.0/third_party/py/ml_dtypes/workspace.bzl
-{% set libml_dtypes_version = "0.5.0" %}
-{% set ml_dtypes_version = "0.4.0" %}
+{% set libml_dtypes_version = "0.5.1" %}
+{% set ml_dtypes_version = "0.5.1" %}
 
 package:
   name: tensorflow-split
@@ -23,7 +23,7 @@ package:
 
 source:
   - url: https://github.com/tensorflow/tensorflow/archive/refs/tags/v{{ version.replace(".rc", "-rc") }}.tar.gz
-    sha256: d7876f4bb0235cac60eb6316392a7c48676729860da1ab659fb440379ad5186d
+    sha256: fcfb3e88ab3eebdbab98a03c869a4d2616d52ea166c8d8021de1ef921b47be8d
     patches:
       - patches/0001-loosen-requirements.patch
       - patches/0002-Add-additional-absl_synchronization-linkage-to-gRPC.patch
@@ -52,14 +52,29 @@ source:
       - patches/0025-Hardcode-BUILD_PREFIX-in-build_pip_package.patch
       - patches/0026-Only-link-to-sparse_core_layout_proto_cc-headers.patch
       - patches/0027-Protobuf-5-compatability.patch
-      - patches/0028-Fix-ResolvePadding-to-be-consistent-in-the-size-of-t.patch
       # https://github.com/tensorflow/tensorflow/pull/86413
-      - patches/0029-Avoid-linking-with-internal-nvrtc.patch
-      - patches/0030-remove-dependencies-to-libcuda.patch
-      - patches/0031-bump-h5py-req.patch     # [aarch64]
-      # backport https://github.com/tensorflow/tensorflow/pull/90563 (applies to cuda-12.8, any platform)
-      - patches/0032-gpu_prim-error.patch
-      - patches/0033-cross-arch-config.patch  # [aarch64 and target_platform != build_platform]
+      - patches/0028-Avoid-linking-with-internal-nvrtc.patch
+      - patches/0029-remove-dependencies-to-libcuda.patch
+      # adjust patch 0004 for newer absl -- hmaarrfk - 2025/07/06
+      - patches/0030-Fixup-pybind11_protobuf.patch
+      - patches/0031-Update-linkages-for-new-absl-organization.patch
+      # Already included in the release after 2.19.0
+      - patches/0032-Remove-ambiguous-inherited-constructor-in-default_qu.patch
+      # these came from https://git.yoctoproject.org/meta-tensorflow/tree/recipes-framework/tensorflow/files
+      # check every release there for patches in the future
+      # - patches/0033-third_party-ducc-fix-ambiguous-failure.patch
+      # - patches/0034-third_party-tf_runtime-fix-compile-failure.patch
+      # - patches/0035-support-to-build-with-gcc-15.patch
+      - patches/0036-third_party-eigen_archive-workaround-ice-failure-whi.patch
+      # for our system absl
+      - patches/0037-add-absl_tracing_internal.patch
+      # for the megabuild
+      - patches/0038-Fix-building-different-python-wheels-from-one-python.patch
+      - patches/0039-Fix-matmul-unused-result-error.patch
+      - patches/0040-Support-cuda-12.8.patch
+      - patches/0041-Disable-profiler.patch
+      - patches/0042-bump-h5py-req.patch     # [aarch64]
+      - patches/0043-cross-arch-config.patch  # [aarch64 and target_platform != build_platform]
   - url: https://github.com/tensorflow/estimator/archive/refs/tags/v{{ estimator_version.replace(".rc", "-rc") }}.tar.gz
     sha256: 2d7e100b1878084da34b5e23b49a0cbb5ee8a7add74b7dd189a82ada1cf85530
     folder: tensorflow-estimator
@@ -94,6 +109,7 @@ requirements:
     - x86_64-microarch-level  {{ microarch_level }}  # [linux and x86_64]
     - bazel 6.*
     - bazel-toolchain
+    - bazel-toolchain <0.3                   # [osx]
     - libgrpc
     - libprotobuf
     - nasm
@@ -160,7 +176,7 @@ requirements:
     - sqlite
     - snappy
     - zlib
-    - ml_dtypes >={{ ml_dtypes_version }},<0.5
+    - ml_dtypes >={{ ml_dtypes_version }},<1.0
 
 outputs:
   - name: libtensorflow_framework
@@ -223,14 +239,13 @@ outputs:
       track_features:
         - tensorflow-cpu          # [cuda_compiler_version == "None"]
       entry_points:
-        - toco_from_protos = tensorflow.lite.toco.python.toco_from_protos:main
         - tflite_convert = tensorflow.lite.python.tflite_convert:main
         - toco = tensorflow.lite.python.tflite_convert:main
         - saved_model_cli = tensorflow.python.tools.saved_model_cli:main
+        - import_pb_to_tensorboard=tensorflow.python.tools.import_pb_to_tensorboard:main
         # The tensorboard package adds this entry point.
         # - tensorboard = tensorboard.main:run_main
         - tf_upgrade_v2 = tensorflow.tools.compatibility.tf_upgrade_v2_main:main
-        - estimator_ckpt_converter = tensorflow_estimator.python.estimator.tools.checkpoint_converter:main
     requirements:
       # build requirements needs to pick up the compiler run_exports
       build:
@@ -288,11 +303,11 @@ outputs:
         - gast >=0.2.1,!=0.5.0,!=0.5.1,!=0.5.2
         - google-pasta >=0.1.1
         - h5py >=3.11
-        - ml_dtypes >={{ ml_dtypes_version }},<0.5
+        - ml_dtypes >={{ ml_dtypes_version }},<1.0
         - numpy
         - opt_einsum >=2.3.2
         # simplified compared to upstream due to constraints arising through libprotobuf
-        - protobuf >=5.26,<6
+        - protobuf >=5.28
         - python-flatbuffers >=24.3.25
         - requests >=2.21.0,<3
         - six >=1.12
@@ -300,8 +315,8 @@ outputs:
         - typing_extensions >=3.6.6
         - wrapt >=1.11.0
         # TF-API needs to move in sync
-        - tensorboard >=2.18,<2.19
-        - keras >=3.0
+        - tensorboard >=2.19,<2.20
+        - keras >=3.5
         - {{ pin_subpackage("libtensorflow_framework", exact=True) }}
         - {{ pin_subpackage("libtensorflow_cc", exact=True) }}
       run:
@@ -313,9 +328,9 @@ outputs:
         - google-pasta >=0.1.1
         - grpcio {{ libgrpc }}.*
         - h5py >=3.11
-        - ml_dtypes >={{ ml_dtypes_version }},<0.5
+        - ml_dtypes >={{ ml_dtypes_version }},<1.0
         - opt_einsum >=2.3.2
-        - protobuf >=5.26,<6
+        - protobuf >=5.26
         - python-flatbuffers >=24.3.25
         - requests >=2.21.0,<3
         - six >=1.12
@@ -323,8 +338,8 @@ outputs:
         - typing_extensions >=3.6.6
         - wrapt >=1.11.0
         # TF-API needs to move in sync
-        - tensorboard >=2.18,<2.19
-        - keras >=3.0
+        - tensorboard >=2.19,<2.20
+        - keras >=3.5
         # avoid that people without GPUs needlessly download ~0.5-1GB
         - __cuda                                                  # [cuda_compiler_version != "None"]
         # https://github.com/conda-forge/tensorflow-feedstock/issues/296#issuecomment-1835781851
@@ -379,7 +394,6 @@ outputs:
         # --help exits with exit code 1
         - test -x $PREFIX/bin/saved_model_cli  # [unix]
         - tflite_convert --help      # [build_platform == target_platform]
-        - toco_from_protos --help    # [build_platform == target_platform]
         - toco --help                # [build_platform == target_platform]
         - python -c 'import tensorflow as tf; assert tf.test.is_built_with_cuda()'      # [cuda_compiler_version != "None" and build_platform == target_platform]
         - python -c 'import tensorflow as tf; assert not tf.test.is_built_with_cuda()'  # [cuda_compiler_version == "None" and build_platform == target_platform]

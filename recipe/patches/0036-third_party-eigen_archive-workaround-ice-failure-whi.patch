@@ -1,7 +1,7 @@
-From 98d2b8a662865334a04a46675ae3a4259e08b362 Mon Sep 17 00:00:00 2001
+From e930fab1defd8fab209044028e530d7e533c1ef4 Mon Sep 17 00:00:00 2001
 From: Hongxu Jia <hongxu.jia@windriver.com>
 Date: Mon, 16 May 2022 23:15:47 -0700
-Subject: [PATCH 36/41] third_party/eigen_archive:workaround ice failure while
+Subject: [PATCH 36/44] third_party/eigen_archive:workaround ice failure while
  building from source with gcc 7.3.1
 
 The root cause is gcc ice issue:

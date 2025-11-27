@@ -1,7 +1,7 @@
-From b027d8a7e8c257e50a8db2ef875f1fdf4b5276c0 Mon Sep 17 00:00:00 2001
+From 7f4410d060de5477f5ef3b6d95e9045bf141a0a4 Mon Sep 17 00:00:00 2001
 From: Mark Harfouche <mark.harfouche@gmail.com>
 Date: Tue, 27 Feb 2024 18:01:19 -0500
-Subject: [PATCH 17/41] Update ABSL Log Definition for
+Subject: [PATCH 17/44] Update ABSL Log Definition for
  libabsl_vlog_config_internal.so
 
 ---

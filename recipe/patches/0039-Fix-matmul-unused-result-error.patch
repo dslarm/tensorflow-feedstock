@@ -1,7 +1,7 @@
-From 1f37dd0417cfe833272399a629bd208729e94d92 Mon Sep 17 00:00:00 2001
+From f27636f9d6ef3a4d623ece0236edaa2ac9db286e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Jakub=20Klinkovsk=C3=BD?= <lahwaacz@archlinux.org>
 Date: Wed, 6 Aug 2025 18:16:06 +0000
-Subject: [PATCH 39/41] Fix matmul unused result error
+Subject: [PATCH 39/44] Fix matmul unused result error
 
 ---
  .../toco/graph_transformations/resolve_tensorflow_matmul.cc     | 2 +-

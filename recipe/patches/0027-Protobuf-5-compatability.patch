@@ -1,7 +1,7 @@
-From c3fabee4eb7c2e420a31a37ad10cffb5c6cc426b Mon Sep 17 00:00:00 2001
+From 42c45204278fc1f3021bfff528664743a7bd81ac Mon Sep 17 00:00:00 2001
 From: "Uwe L. Korn" <uwe.korn@quantco.com>
 Date: Thu, 10 Oct 2024 19:59:31 +0200
-Subject: [PATCH 27/41] Protobuf 5 compatability
+Subject: [PATCH 27/44] Protobuf 5 compatability
 
 ---
  .../mlir/lite/python/jax_to_tfl_flatbuffer.cc |  2 +-

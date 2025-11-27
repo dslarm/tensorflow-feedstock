@@ -1,7 +1,7 @@
-From c0aad81257fd98c2a5dcfcba79cbde9a2a09c4b7 Mon Sep 17 00:00:00 2001
+From 2a4e3c49ce87c62dae261011b8d2b297f300695d Mon Sep 17 00:00:00 2001
 From: dslarm <david+dslarm@lecomber.net>
 Date: Tue, 14 Oct 2025 15:02:09 +0000
-Subject: [PATCH 43/43] cross arch config
+Subject: [PATCH 43/44] cross arch config
 
 ---
  third_party/llvm/dirty.patch   | 11 +++++++++++

@@ -1,7 +1,7 @@
-From 5e6f65f2fbcaef687cb91caa71ff6aea3448f584 Mon Sep 17 00:00:00 2001
+From 2d39b35a19ede081ccc78120df16c845bcba622c Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <ifernando@openteams.com>
 Date: Mon, 13 Oct 2025 19:52:15 +0000
-Subject: [PATCH 41/41] Disable profiler
+Subject: [PATCH 41/44] Disable profiler
 
 Enabling the profiler results in
 

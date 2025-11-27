@@ -1,7 +1,7 @@
-From e3ccc6eab6a708cf57bca45dcb8f7afc23156cfb Mon Sep 17 00:00:00 2001
+From f095eb76d7f32020f7cbc184aa7993d3f5d46abe Mon Sep 17 00:00:00 2001
 From: Hongxu Jia <hongxu.jia@windriver.com>
 Date: Mon, 14 Jul 2025 16:13:33 +0800
-Subject: [PATCH 34/41] third_party/tf_runtime: fix compile failure
+Subject: [PATCH 34/44] third_party/tf_runtime: fix compile failure
 
 ...
 In file included from external/tf_runtime/include/tfrt/support/crc32c.h:26,

@@ -75,7 +75,8 @@ source:
       - patches/0041-Disable-profiler.patch
       - patches/0042-bump-h5py-req.patch     # [aarch64]
       - patches/0043-cross-arch-config.patch  # [aarch64 and target_platform != build_platform]
-      - patches/99364.patch
+      # backport https://github.com/tensorflow/tensorflow/pull/99364
+      - patches/0044-Support-for-TFv2.20-to-compile-with-CUDA-v12.9.1.patch
   - url: https://github.com/tensorflow/estimator/archive/refs/tags/v{{ estimator_version.replace(".rc", "-rc") }}.tar.gz
     sha256: 2d7e100b1878084da34b5e23b49a0cbb5ee8a7add74b7dd189a82ada1cf85530
     folder: tensorflow-estimator

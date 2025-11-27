@@ -1,7 +1,7 @@
-From 325185559fa8f5de25417644fc892c39fdbe2199 Mon Sep 17 00:00:00 2001
+From a019073e0a9bdda8b43809f2b9627da43c934f01 Mon Sep 17 00:00:00 2001
 From: Mark Harfouche <mark.harfouche@gmail.com>
 Date: Mon, 26 Feb 2024 22:30:08 -0500
-Subject: [PATCH 16/41] Link to absl_log_flags instead of absl_flags
+Subject: [PATCH 16/44] Link to absl_log_flags instead of absl_flags
 
 ---
  third_party/absl/system.absl.flags.BUILD                        | 2 +-

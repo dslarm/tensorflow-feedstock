@@ -1,7 +1,7 @@
-From d9c7dd6bc48f7f894ea5179d014c176bdc1412a3 Mon Sep 17 00:00:00 2001
+From e6939ac299265f14f14e1c52b02bfcf410ff7860 Mon Sep 17 00:00:00 2001
 From: "Uwe L. Korn" <uwe.korn@quantco.com>
 Date: Fri, 12 Jul 2024 12:52:38 +0000
-Subject: [PATCH 25/41] Hardcode BUILD_PREFIX in build_pip_package
+Subject: [PATCH 25/44] Hardcode BUILD_PREFIX in build_pip_package
 
 ---
  tensorflow/tools/pip_package/build_pip_package.py | 6 +++---

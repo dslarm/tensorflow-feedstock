@@ -1,7 +1,7 @@
-From b53fc0aebaee09319e32161c2c7e7c0cd24d1d9f Mon Sep 17 00:00:00 2001
+From 83db53827ca3914f035fe10f7666c84d7cad41dd Mon Sep 17 00:00:00 2001
 From: Hongxu Jia <hongxu.jia@windriver.com>
 Date: Mon, 14 Jul 2025 15:35:54 +0800
-Subject: [PATCH 33/41] third_party/ducc: fix ambiguous failure
+Subject: [PATCH 33/44] third_party/ducc: fix ambiguous failure
 
 ...
 bazel-out/k8-opt/bin/external/ducc/_virtual_includes/fft/ducc/src/ducc0/fft/fftnd_impl.h:1393:20: error: call of '(ducc0::detail_mav::vmav<std::complex<float>, 2>) (long unsigned int&, size_t&)' is ambiguous

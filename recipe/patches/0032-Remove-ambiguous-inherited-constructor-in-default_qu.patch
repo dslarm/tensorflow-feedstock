@@ -1,7 +1,7 @@
-From 58ee9b5a3fdad20f827f9f0f2e94a228888f45ba Mon Sep 17 00:00:00 2001
+From 1d9ce9485bf23f4e5d801c34fe8eb594959e13b2 Mon Sep 17 00:00:00 2001
 From: "Patrick J. LoPresti" <lopresti@gmail.com>
 Date: Thu, 3 Apr 2025 10:24:37 -0700
-Subject: [PATCH 32/41] Remove ambiguous inherited constructor in
+Subject: [PATCH 32/44] Remove ambiguous inherited constructor in
  default_quant_params.cc. GCC complains about this
  (https://stackoverflow.com/q/79553477/). Fix is trivial and harmless.
 

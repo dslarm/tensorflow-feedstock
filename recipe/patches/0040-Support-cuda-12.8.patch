@@ -1,7 +1,7 @@
-From 6e4e98cd941c790f5698ff0111ed632b676bbf7c Mon Sep 17 00:00:00 2001
+From f0bcaf0caa735d2a68b2f0d8c8baf8e8f4453b4f Mon Sep 17 00:00:00 2001
 From: oqs <2227-loqs@users.noreply.gitlab.archlinux.org>
 Date: Wed, 6 Aug 2025 19:34:12 +0000
-Subject: [PATCH 40/41] Support cuda 12.8
+Subject: [PATCH 40/44] Support cuda 12.8
 
 Co-authored-by: Isuru Fernando <ifernando@openteams.com>
 ---

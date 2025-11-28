@@ -1,7 +1,7 @@
-From 3e45daedd0fbd56d9ea2fca66a95b5e7561c4151 Mon Sep 17 00:00:00 2001
+From 5999590f2bb6bf895012f8777adcd289576beb8b Mon Sep 17 00:00:00 2001
 From: Mark Harfouche <mark.harfouche@gmail.com>
 Date: Sun, 6 Jul 2025 16:45:03 -0400
-Subject: [PATCH 30/41] Fixup pybind11_protobuf
+Subject: [PATCH 30/44] Fixup pybind11_protobuf
 
 ---
  tensorflow/workspace2.bzl                          |  8 +++++---

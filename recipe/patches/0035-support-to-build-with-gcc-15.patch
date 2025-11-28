@@ -1,7 +1,7 @@
-From 32ce8d77beabcc754ec5ae2b446ff7f2f3378251 Mon Sep 17 00:00:00 2001
+From e71278601106b0f00fbd01f641055df87789e8b6 Mon Sep 17 00:00:00 2001
 From: Hongxu Jia <hongxu.jia@windriver.com>
 Date: Tue, 25 Mar 2025 22:38:37 -0700
-Subject: [PATCH 35/41] support to build with gcc 15
+Subject: [PATCH 35/44] support to build with gcc 15
 
 Upstream-Status: Pending
 

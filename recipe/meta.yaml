@@ -82,6 +82,8 @@ source:
 build:
   number: {{ build }}
   skip: true  # [win]
+  # debug
+  skip: true  # [not osx]
   # TODO: debug issues with CUDA cross-compilation
   skip: true  # [aarch64 and cuda_compiler_version != "None"]
 

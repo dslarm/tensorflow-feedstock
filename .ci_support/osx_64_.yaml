@@ -26,6 +26,8 @@ flatbuffers:
 - 25.9.23
 giflib:
 - '5.2'
+github_actions_labels:
+- cirun-macos-m4-large
 icu:
 - '75'
 libabseil:

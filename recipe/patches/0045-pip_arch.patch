@@ -1,0 +1,40 @@
+diff --git a/tensorflow/tools/pip_package/BUILD b/tensorflow/tools/pip_package/BUILD
+index 5aecef595ba..d3aa65c48ef 100644
+--- a/tensorflow/tools/pip_package/BUILD
++++ b/tensorflow/tools/pip_package/BUILD
+@@ -288,12 +288,7 @@ tf_wheel(
+         "@platforms//os:windows": "win",
+         "@platforms//os:linux": "linux",
+     }),
+-    platform_tag = select({
+-        "@platforms//cpu:aarch64": "arm64",
+-        "@platforms//cpu:arm64": "arm64",
+-        "@platforms//cpu:x86_64": "x86_64",
+-        "@platforms//cpu:ppc": "ppc64le",
+-    }),
++    platform_tag = "arm64",
+     source_files = [
+         "MANIFEST.in",
+         "//tensorflow/tools/pip_package:THIRD_PARTY_NOTICES.txt",
+diff --git a/tensorflow/tools/pip_package/utils/tf_wheel.bzl b/tensorflow/tools/pip_package/utils/tf_wheel.bzl
+index 057779e946e..c1c85551ca2 100644
+--- a/tensorflow/tools/pip_package/utils/tf_wheel.bzl
++++ b/tensorflow/tools/pip_package/utils/tf_wheel.bzl
+@@ -77,7 +77,7 @@ def _tf_wheel_impl(ctx):
+ 
+     full_wheel_name = _get_full_wheel_name(
+         platform_name = ctx.attr.platform_name,
+-        platform_tag = ctx.attr.platform_tag,
++        platform_tag = "arm64",
+     )
+     wheel_dir_name = "wheel_house"
+     output_file = ctx.actions.declare_file("{wheel_dir}/{wheel_name}".format(
+@@ -89,7 +89,7 @@ def _tf_wheel_impl(ctx):
+     args.add("--project-name", WHEEL_NAME)
+     args.add("--platform", _get_wheel_platform_name(
+         ctx.attr.platform_name,
+-        ctx.attr.platform_tag,
++        "arm64"
+     ))
+     args.add("--collab", str(WHEEL_COLLAB))
+     args.add("--output-name", wheel_dir)

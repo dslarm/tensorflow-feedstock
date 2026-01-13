@@ -1,21 +1,3 @@
-diff --git a/tensorflow/tools/pip_package/BUILD b/tensorflow/tools/pip_package/BUILD
-index 5aecef595ba..d3aa65c48ef 100644
---- a/tensorflow/tools/pip_package/BUILD
-+++ b/tensorflow/tools/pip_package/BUILD
-@@ -288,12 +288,7 @@ tf_wheel(
-         "@platforms//os:windows": "win",
-         "@platforms//os:linux": "linux",
-     }),
--    platform_tag = select({
--        "@platforms//cpu:aarch64": "arm64",
--        "@platforms//cpu:arm64": "arm64",
--        "@platforms//cpu:x86_64": "x86_64",
--        "@platforms//cpu:ppc": "ppc64le",
--    }),
-+    platform_tag = "arm64",
-     source_files = [
-         "MANIFEST.in",
-         "//tensorflow/tools/pip_package:THIRD_PARTY_NOTICES.txt",
 diff --git a/tensorflow/tools/pip_package/utils/tf_wheel.bzl b/tensorflow/tools/pip_package/utils/tf_wheel.bzl
 index 057779e946e..5b4bc01b674 100644
 --- a/tensorflow/tools/pip_package/utils/tf_wheel.bzl

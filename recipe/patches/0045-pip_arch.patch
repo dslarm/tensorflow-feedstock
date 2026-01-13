@@ -1,0 +1,22 @@
+diff --git a/tensorflow/tools/pip_package/utils/tf_wheel.bzl b/tensorflow/tools/pip_package/utils/tf_wheel.bzl
+index 057779e946e..a529a54de11 100644
+--- a/tensorflow/tools/pip_package/utils/tf_wheel.bzl
++++ b/tensorflow/tools/pip_package/utils/tf_wheel.bzl
+@@ -77,7 +77,7 @@ def _tf_wheel_impl(ctx):
+ 
+     full_wheel_name = _get_full_wheel_name(
+         platform_name = ctx.attr.platform_name,
+-        platform_tag = ctx.attr.platform_tag,
++        platform_tag = ctx.attr.cpu,
+     )
+     wheel_dir_name = "wheel_house"
+     output_file = ctx.actions.declare_file("{wheel_dir}/{wheel_name}".format(
+@@ -89,7 +89,7 @@ def _tf_wheel_impl(ctx):
+     args.add("--project-name", WHEEL_NAME)
+     args.add("--platform", _get_wheel_platform_name(
+         ctx.attr.platform_name,
+-        ctx.attr.platform_tag,
++        ctx.attr.cpu,
+     ))
+     args.add("--collab", str(WHEEL_COLLAB))
+     args.add("--output-name", wheel_dir)

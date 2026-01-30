@@ -74,8 +74,6 @@ source:
       - patches/0040-Support-cuda-12.8.patch
       - patches/0041-Disable-profiler.patch
       - patches/0042-cross-arch-config.patch  # [aarch64 and target_platform != build_platform]
-      # backport https://github.com/tensorflow/tensorflow/pull/99364
-      - patches/0043-Support-for-TFv2.20-to-compile-with-CUDA-v12.9.1.patch
       # backport https://github.com/openxla/xla/pull/22572 into vendored xla
       - patches/0044-PR-22572-Fix-build-break-in-convolution_thunk_intern.patch
       - patches/0045-Force-python-wheel-architecture-to-aarch64.patch  # [aarch64 and target_platform != build_platform]

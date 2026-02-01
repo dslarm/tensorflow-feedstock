@@ -90,6 +90,8 @@ build:
   skip: true  # [osx]
   # TODO: debug issues with CUDA cross-compilation
   skip: true  # [aarch64 and cuda_compiler_version != "None"]
+  # DEBUG:
+  skip: true  # [not aarch64]
 
 requirements:
   build:
